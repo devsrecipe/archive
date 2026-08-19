@@ -1,0 +1,636 @@
+{
+  "profile": {
+    "name": "Mansura Mira",
+    "firstName": "Mansura",
+    "lastName": "Mira",
+    "role": "Full Stack Developer & Digital Solutions Architect",
+    "tagline": "We turn your ideas into real-life digital products",
+    "location": "Dhaka, Bangladesh",
+    "email": "mansuramira0273@gmail.com",
+    "phone": "+88019964644479",
+    "bio": "I am part of a passionate team of developers and designers. Together, we work on multiple projects — from full-stack web platforms to mobile applications and scalable backend systems. We don't just write code; we craft digital experiences that drive real business results.",
+    "bio2": "Our team focuses on clean, maintainable code and strives to provide exceptional user experiences. Whether it's an e-commerce platform, a real-time messaging system, or a mobile app — we deliver solutions that are scalable, high-performance, and built to last.",
+    "links": {
+      "github": "https://github.com/mansuramira",
+      "linkedin": "https://www.linkedin.com/in/mansura-mira-bb5504426/",
+      "website": "https://mansuramira.vercel.app/",
+      "whatsapp": "https://wa.me/88019964644479"
+    }
+  },
+  "hero": {
+    "greeting": "Welcome to our digital studio",
+    "headline": "We Build Digital Products That Matter",
+    "subheadline": "Full-stack development team specializing in web platforms, mobile apps, and scalable backend systems. Let's turn your vision into reality.",
+    "typewriterLines": [
+      "Full Stack Development Team 🚀",
+      "Web & Mobile Solutions 🧠",
+      "Scalable Backend Architecture ⚡",
+      "From Concept to Deployment ✨",
+      "Your Idea → Real Product 💜"
+    ],
+    "ctaPrimary": "Start Your Project",
+    "ctaSecondary": "View Our Work"
+  },
+  "stats": [
+    {
+      "value": "2+",
+      "label": "Years Experience"
+    },
+    {
+      "value": "10+",
+      "label": "Projects Delivered"
+    },
+    {
+      "value": "15+",
+      "label": "Happy Clients"
+    },
+    {
+      "value": "99%",
+      "label": "Client Satisfaction"
+    }
+  ],
+  "services": [
+    {
+      "icon": "🌐",
+      "title": "Full Stack Web Development",
+      "description": "End-to-end web platforms built with React, Next.js, and Node.js. From landing pages to complex e-commerce systems — we handle it all.",
+      "tags": [
+        "React.js",
+        "Next.js",
+        "Node.js",
+        "MongoDB"
+      ]
+    },
+    {
+      "icon": "📱",
+      "title": "Mobile App Development",
+      "description": "Cross-platform mobile applications using React Native CLI, published on both Google Play Store and Apple App Store.",
+      "tags": [
+        "React Native",
+        "iOS",
+        "Android",
+        "App Store"
+      ]
+    },
+    {
+      "icon": "⚡",
+      "title": "Backend & API Development",
+      "description": "Robust, scalable backend systems with RESTful APIs, real-time features via Socket.io, authentication, and payment integration.",
+      "tags": [
+        "Express.js",
+        "Socket.io",
+        "Stripe",
+        "REST APIs"
+      ]
+    },
+    {
+      "icon": "☁️",
+      "title": "Cloud & DevOps",
+      "description": "AWS deployment, Docker containerization, CI/CD pipelines, and production-grade infrastructure management.",
+      "tags": [
+        "AWS",
+        "Docker",
+        "CI/CD",
+        "EC2",
+        "S3"
+      ]
+    },
+    {
+      "icon": "🛒",
+      "title": "E-Commerce Solutions",
+      "description": "Complete e-commerce platforms with product management, shopping cart, order processing, and secure payment gateways.",
+      "tags": [
+        "Stripe",
+        "Payment Gateway",
+        "Cart System",
+        "Admin Panel"
+      ]
+    },
+    {
+      "icon": "🎨",
+      "title": "UI/UX & Frontend Design",
+      "description": "Beautiful, responsive frontends with admin dashboards, analytics panels, and pixel-perfect designs that convert visitors into customers.",
+      "tags": [
+        "Tailwind CSS",
+        "Responsive",
+        "Dashboard",
+        "SEO"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "icon": "💼",
+      "accent": "#3b82f6",
+      "type": "Full Stack & Admin",
+      "category": "web",
+      "name": "Find Work Platform",
+      "description": "Comprehensive worker recruitment & task marketplace platform with candidate dashboards, worker management, application tracking, analytics, and full operational admin controls.",
+      "image": "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-2026-08-10-16_36_57.png",
+      "screenshots": [
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-2026-08-10-16_36_57.png",
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-find-work-2026-08-10-16_37_35.png",
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-how-it-works-2026-08-10-16_37_50.png",
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-work-6a79a7ea8988cf35d7e257ba-2026-08-10-16_38_08.png",
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-dashboard-2026-08-10-16_38_31.png",
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-dashboard-work-posts-2026-08-10-16_38_57.png",
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-dashboard-applications-2026-08-10-16_39_16.png",
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-dashboard-notifications-2026-08-10-16_39_48.png",
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-dashboard-worker-profile-2026-08-10-16_40_36.png",
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-admin-2026-08-10-16_41_20.png",
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-admin-users-2026-08-10-16_41_28.png",
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-admin-operations-2026-08-10-16_41_40.png",
+        "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-admin-analytics-2026-08-10-16_41_47.png"
+      ],
+      "tags": [
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Vercel",
+        "Analytics Dashboard"
+      ],
+      "links": [
+        {
+          "url": "https://find-work-fronend.vercel.app/",
+          "label": "Live Demo"
+        },
+        {
+          "url": "/portfolio/find_work/screencapture-find-work-fronend-vercel-app-2026-08-10-16_36_57.png",
+          "label": "Image Preview"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "icon": "👔",
+      "accent": "#8b5cf6",
+      "type": "Full Stack Platform",
+      "category": "web",
+      "name": "Job Portal & Candidate Suite",
+      "description": "End-to-end Job Portal ecosystem consisting of a public job search website, candidate preference panel, subscription & package billing system, and platform health admin control center.",
+      "image": "/portfolio/job_portal/screencapture-job-portal-website-omega-vercel-app-2026-08-10-16_12_09.png",
+      "screenshots": [
+        "/portfolio/job_portal/screencapture-job-portal-website-omega-vercel-app-2026-08-10-16_12_09.png",
+        "/portfolio/job_portal/screencapture-job-portal-website-omega-vercel-app-jobs-2026-08-10-16_12_27.png",
+        "/portfolio/job_portal/screencapture-job-portal-website-omega-vercel-app-about-2026-08-10-16_12_36.png",
+        "/portfolio/job_portal/screencapture-job-portal-website-omega-vercel-app-contact-2026-08-10-16_12_45.png",
+        "/portfolio/job_portal/screencapture-job-portal-website-omega-vercel-app-jobs-6a77c30c09ad9576f245cbbd-2026-08-10-16_13_09.png",
+        "/portfolio/job_portal/screencapture-job-portal-user-panel-vercel-app-candidate-dashboard-2026-08-10-16_13_39.png",
+        "/portfolio/job_portal/screencapture-job-portal-user-panel-vercel-app-candidate-preferences-2026-08-10-16_13_51.png",
+        "/portfolio/job_portal/screencapture-job-portal-user-panel-vercel-app-subscription-2026-08-10-16_14_51.png",
+        "/portfolio/job_portal/screencapture-job-portal-user-panel-vercel-app-packages-2026-08-10-16_15_04.png",
+        "/portfolio/job_portal/screencapture-job-portal-admin-wine-vercel-app-2026-08-10-16_20_24.png",
+        "/portfolio/job_portal/screencapture-job-portal-admin-wine-vercel-app-controls-2026-08-10-16_20_34.png",
+        "/portfolio/job_portal/screencapture-job-portal-admin-wine-vercel-app-platform-health-2026-08-10-16_21_13.png",
+        "/portfolio/job_portal/screencapture-job-portal-admin-wine-vercel-app-db-jobs-2026-08-10-16_21_36.png",
+        "/portfolio/job_portal/screencapture-job-portal-admin-wine-vercel-app-categories-add-2026-08-10-16_22_21.png"
+      ],
+      "tags": [
+        "Next.js",
+        "Node.js",
+        "MongoDB",
+        "Stripe Packages",
+        "Admin Portal",
+        "Tailwind CSS"
+      ],
+      "links": [
+        {
+          "url": "https://job-portal-website-omega.vercel.app/",
+          "label": "Live Website"
+        },
+        {
+          "url": "https://job-portal-admin-wine.vercel.app/",
+          "label": "Admin Panel"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "icon": "📱",
+      "accent": "#10b981",
+      "type": "Mobile App",
+      "category": "mobile",
+      "name": "Taka De — Financial Mobile App",
+      "description": "Cross-platform fintech mobile application designed for quick money transfer, wallet tracking, expense categorization, and seamless user financial management.",
+      "image": "/portfolio/Taka_de/Screenshot_20260810-184304.png",
+      "screenshots": [
+        "/portfolio/Taka_de/Screenshot_20260810-184304.png",
+        "/portfolio/Taka_de/Screenshot_20260810-184315.png",
+        "/portfolio/Taka_de/Screenshot_20260810-184322.png",
+        "/portfolio/Taka_de/Screenshot_20260810-184327.png",
+        "/portfolio/Taka_de/Screenshot_20260810-184333.png",
+        "/portfolio/Taka_de/Screenshot_20260810-184348.png",
+        "/portfolio/Taka_de/Screenshot_20260810-184405.png",
+        "/portfolio/Taka_de/Screenshot_20260810-184424.png",
+        "/portfolio/Taka_de/Screenshot_20260810-184430.png",
+        "/portfolio/Taka_de/Screenshot_20260810-184452.png"
+      ],
+      "tags": [
+        "React Native",
+        "Fintech App",
+        "Redux Toolkit",
+        "REST API",
+        "Android & iOS"
+      ],
+      "links": [
+        {
+          "url": "/portfolio/Taka_de/Screenshot_20260810-184304.png",
+          "label": "App Preview"
+        },
+        {
+          "url": "https://mansuramira.vercel.app/",
+          "label": "More Info"
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "group": "Frontend & Mobile",
+      "icon": "💻",
+      "items": [
+        {
+          "name": "React JS",
+          "level": "Expertise",
+          "color": "#34d399",
+          "tags": [
+            "Hooks",
+            "Redux",
+            "Vite"
+          ]
+        },
+        {
+          "name": "Next.js",
+          "level": "Expertise",
+          "color": "#38bdf8",
+          "tags": [
+            "App Router",
+            "SSR",
+            "SEO"
+          ]
+        },
+        {
+          "name": "JavaScript",
+          "level": "Expertise",
+          "color": "#facc15",
+          "tags": [
+            "ES6+",
+            "Async/Await",
+            "DOM"
+          ]
+        },
+        {
+          "name": "TypeScript",
+          "level": "Expertise",
+          "color": "#38bdf8",
+          "tags": [
+            "Types",
+            "Interfaces",
+            "Generics"
+          ]
+        },
+        {
+          "name": "React Native",
+          "level": "Expertise",
+          "color": "#38bdf8",
+          "tags": [
+            "CLI",
+            "Mobile Apps",
+            "iOS & Android"
+          ]
+        },
+        {
+          "name": "Redux",
+          "level": "Expertise",
+          "color": "#a855f7",
+          "tags": [
+            "RTK",
+            "State Management"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Backend & Systems",
+      "icon": "⚡",
+      "items": [
+        {
+          "name": "Node.js",
+          "level": "Expertise",
+          "color": "#22c55e",
+          "tags": [
+            "Runtime",
+            "Event Loop",
+            "Modular"
+          ]
+        },
+        {
+          "name": "Express JS",
+          "level": "Expertise",
+          "color": "#a855f7",
+          "tags": [
+            "REST APIs",
+            "Middleware",
+            "Auth"
+          ]
+        },
+        {
+          "name": "Socket.io",
+          "level": "Comfortable",
+          "color": "#facc15",
+          "tags": [
+            "Real-time",
+            "WebSockets",
+            "Chat"
+          ]
+        },
+        {
+          "name": "Prisma",
+          "level": "Comfortable",
+          "color": "#6366f1",
+          "tags": [
+            "ORM",
+            "Migrations",
+            "Schema"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Database & Cloud / DevOps",
+      "icon": "☁️",
+      "items": [
+        {
+          "name": "MongoDB",
+          "level": "Expertise",
+          "color": "#facc15",
+          "tags": [
+            "Mongoose",
+            "Aggregation",
+            "Atlas"
+          ]
+        },
+        {
+          "name": "PostgreSQL",
+          "level": "Comfortable",
+          "color": "#38bdf8",
+          "tags": [
+            "SQL",
+            "Relational DB"
+          ]
+        },
+        {
+          "name": "AWS",
+          "level": "Comfortable",
+          "color": "#f97316",
+          "tags": [
+            "EC2",
+            "S3",
+            "Deployment"
+          ]
+        },
+        {
+          "name": "Docker",
+          "level": "Comfortable",
+          "color": "#38bdf8",
+          "tags": [
+            "Containers",
+            "Compose"
+          ]
+        },
+        {
+          "name": "CI/CD",
+          "level": "Comfortable",
+          "color": "#f97316",
+          "tags": [
+            "Automation",
+            "Workflows"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Languages & Fundamentals",
+      "icon": "🧠",
+      "items": [
+        {
+          "name": "C / C++",
+          "level": "Comfortable",
+          "color": "#f97316",
+          "tags": [
+            "Pointers",
+            "Memory",
+            "OOP"
+          ]
+        },
+        {
+          "name": "DSA",
+          "level": "Comfortable",
+          "color": "#a855f7",
+          "tags": [
+            "Algorithms",
+            "Problem Solving"
+          ]
+        },
+        {
+          "name": "OOP",
+          "level": "Understanding",
+          "color": "#22c55e",
+          "tags": [
+            "Design Patterns",
+            "Inheritance"
+          ]
+        },
+        {
+          "name": "MySQL",
+          "level": "Understanding",
+          "color": "#38bdf8",
+          "tags": [
+            "Queries",
+            "Relational"
+          ]
+        },
+        {
+          "name": "PHP",
+          "level": "Understanding",
+          "color": "#6366f1",
+          "tags": [
+            "Backend",
+            "WordPress"
+          ]
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "date": "May 2024 - Present",
+      "current": true,
+      "role": "Tech Lead & Full-Stack Solutions Architect",
+      "company": "WB Software",
+      "location": "Remote",
+      "description": "Lead a high-performing cross-functional team of full-stack developers and designers delivering production-grade digital products. Architect scalable web platforms, cross-platform mobile apps, and robust backend infrastructure. Oversee end-to-end product delivery—from UI/UX design and modular API architecture to AWS cloud deployment, payment integration, and App Store publishing.",
+      "tags": [
+        "Team Leadership",
+        "React.js",
+        "React Native",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "AWS",
+        "Stripe",
+        "TypeScript",
+        "Socket.io",
+        "Docker"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "university": "Uttara University",
+      "degree": "B.Sc. in Computer Science & Engineering (CSE)",
+      "gpa": "",
+      "period": "2025 - Present",
+      "location": "Dhaka, Bangladesh",
+      "icon": "🎓"
+    },
+    {
+      "id": 2,
+      "university": "Pabna Polytechnic Institute",
+      "degree": "Diploma in Computer Engineering",
+      "gpa": "GPA 3.59 out of 4",
+      "period": "2018 - 2022",
+      "location": "Pabna, Bangladesh",
+      "icon": "🏫"
+    }
+  ],
+  "achievements": [
+    {
+      "icon": "🥇",
+      "title": "CS Fundamentals With Phitron",
+      "event": "Phitron (2025)",
+      "description": "Completed the CS Fundamentals course."
+    },
+    {
+      "icon": "🥇",
+      "title": "Complete Web Development",
+      "event": "Programming Hero (2023)",
+      "description": "Completed the Complete Web Development course."
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "James Rodriguez",
+      "role": "CEO, TechVenture Inc.",
+      "text": "Mansura and her team delivered our e-commerce platform ahead of schedule. The quality of code and attention to detail was exceptional. They handled everything from backend APIs to the mobile app seamlessly.",
+      "rating": 5
+    },
+    {
+      "name": "Sarah Chen",
+      "role": "Founder, HealthConnect",
+      "text": "Working with this team was a game-changer for our startup. They built our doctor booking app with real-time features that our competitors don't have. Highly recommended for any complex project.",
+      "rating": 5
+    },
+    {
+      "name": "Ahmed Al-Rashid",
+      "role": "CTO, MarketPlex",
+      "text": "The marketplace platform they built for us handles thousands of transactions daily without any issues. Their AWS deployment expertise and Socket.io integration were exactly what we needed.",
+      "rating": 5
+    },
+    {
+      "name": "Emily Watson",
+      "role": "Product Manager, SportsTech",
+      "text": "From concept to deployment, the team exceeded our expectations. The admin dashboard and analytics features they built for our sports platform are incredibly intuitive and powerful.",
+      "rating": 5
+    }
+  ],
+  "about": {
+    "headline": "About Us",
+    "subtitle": "A passionate team turning ideas into reality",
+    "description": "I am Mansura Mira, and I lead a dedicated team of developers and designers. Together, we work across multiple projects — building everything from complex web platforms to mobile applications and enterprise-grade backend systems.",
+    "description2": "Our team doesn't just write code. We partner with you to understand your vision, architect the right solution, and deliver a product that drives real business results. From the first wireframe to production deployment, we handle every step of the journey.",
+    "teamHighlights": [
+      "Collaborative team of full-stack developers & designers",
+      "2+ years delivering production-grade digital products",
+      "Published apps on both App Store & Google Play",
+      "Expertise in real-time systems, e-commerce & SaaS platforms",
+      "End-to-end service: design → develop → deploy → support",
+      "AWS infrastructure & DevOps for enterprise-scale solutions"
+    ],
+    "mission": "We believe every great idea deserves a great product. Our mission is to bridge the gap between your vision and a world-class digital product — on time, on budget, and beyond expectations."
+  },
+  "contact": {
+    "formspreeId": "xjgdzbrg",
+    "headline": "Let's Build Something Amazing",
+    "subtitle": "Ready to start your project? Get in touch and let's discuss how we can bring your idea to life.",
+    "info": [
+      {
+        "icon": "📧",
+        "label": "Email",
+        "value": "mansuramira0273@gmail.com",
+        "href": "mailto:mansuramira0273@gmail.com"
+      },
+      {
+        "icon": "📱",
+        "label": "Phone / WhatsApp",
+        "value": "+88019964644479",
+        "href": "https://wa.me/88019964644479"
+      },
+      {
+        "icon": "📍",
+        "label": "Location",
+        "value": "Dhaka, Bangladesh",
+        "href": "#"
+      },
+      {
+        "icon": "🔗",
+        "label": "LinkedIn",
+        "value": "linkedin.com/in/mansura-mira-bb5504426",
+        "href": "https://www.linkedin.com/in/mansura-mira-bb5504426/"
+      },
+      {
+        "icon": "🐙",
+        "label": "GitHub",
+        "value": "github.com/mansuramira",
+        "href": "https://github.com/mansuramira"
+      }
+    ]
+  },
+  "navigation": [
+    {
+      "id": "hero",
+      "label": "Home"
+    },
+    {
+      "id": "services",
+      "label": "Services"
+    },
+    {
+      "id": "projects",
+      "label": "Projects"
+    },
+    {
+      "id": "skills",
+      "label": "Skills"
+    },
+    {
+      "id": "experience",
+      "label": "Experience"
+    },
+    {
+      "id": "about",
+      "label": "About"
+    },
+    {
+      "id": "testimonials",
+      "label": "Testimonials"
+    },
+    {
+      "id": "contact",
+      "label": "Contact"
+    }
+  ]
+}

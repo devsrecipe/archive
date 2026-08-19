@@ -1,0 +1,693 @@
+{
+    "profile": {
+        "name": "Mansura Mira",
+        "firstName": "Mansura",
+        "lastName": "Mira",
+        "role": "Full Stack Developer & Digital Solutions Architect",
+        "tagline": "We turn your ideas into real-life digital products",
+        "location": "Mohakhali, Dhaka",
+        "email": "shaharulsiyam56@gmail.com",
+        "phone": "+8801566026301",
+        "bio": "I am part of a passionate team of developers and designers. Together, we work on multiple projects — from full-stack web platforms to mobile applications and scalable backend systems. We don't just write code; we craft digital experiences that drive real business results.",
+        "bio2": "Our team focuses on clean, maintainable code and strives to provide exceptional user experiences. Whether it's an e-commerce platform, a real-time messaging system, or a mobile app — we deliver solutions that are scalable, high-performance, and built to last.",
+        "links": {
+            "github": "https://github.com/mdshaharulsiyam",
+            "linkedin": "https://linkedin.com/in/shaharulsiyam",
+            "website": "https://siyam-portfolio.vercel.app",
+            "leetcode": "https://leetcode.com/u/KZvkGuZBqX/",
+            "codeforces": "https://codeforces.com/profile/shaharulsiyam",
+            "codechef": "https://www.codechef.com/users/shaharulsiyam",
+            "whatsapp": "https://wa.me/8801566026301"
+        }
+    },
+    "hero": {
+        "greeting": "Welcome to our digital studio",
+        "headline": "We Build Digital Products That Matter",
+        "subheadline": "Full-stack development team specializing in web platforms, mobile apps, and scalable backend systems. Let's turn your vision into reality.",
+        "typewriterLines": [
+            "Full Stack Development Team 🚀",
+            "Web & Mobile Solutions 🧠",
+            "Scalable Backend Architecture ⚡",
+            "From Concept to Deployment ✨",
+            "Your Idea → Real Product 💜"
+        ],
+        "ctaPrimary": "Start Your Project",
+        "ctaSecondary": "View Our Work"
+    },
+    "stats": [
+        {
+            "value": "2+",
+            "label": "Years Experience"
+        },
+        {
+            "value": "10+",
+            "label": "Projects Delivered"
+        },
+        {
+            "value": "15+",
+            "label": "Happy Clients"
+        },
+        {
+            "value": "99%",
+            "label": "Client Satisfaction"
+        }
+    ],
+    "services": [
+        {
+            "icon": "🌐",
+            "title": "Full Stack Web Development",
+            "description": "End-to-end web platforms built with React, Next.js, and Node.js. From landing pages to complex e-commerce systems — we handle it all.",
+            "tags": [
+                "React.js",
+                "Next.js",
+                "Node.js",
+                "MongoDB"
+            ]
+        },
+        {
+            "icon": "📱",
+            "title": "Mobile App Development",
+            "description": "Cross-platform mobile applications using React Native CLI, published on both Google Play Store and Apple App Store.",
+            "tags": [
+                "React Native",
+                "iOS",
+                "Android",
+                "App Store"
+            ]
+        },
+        {
+            "icon": "⚡",
+            "title": "Backend & API Development",
+            "description": "Robust, scalable backend systems with RESTful APIs, real-time features via Socket.io, authentication, and payment integration.",
+            "tags": [
+                "Express.js",
+                "Socket.io",
+                "Stripe",
+                "REST APIs"
+            ]
+        },
+        {
+            "icon": "☁️",
+            "title": "Cloud & DevOps",
+            "description": "AWS deployment, Docker containerization, CI/CD pipelines, and production-grade infrastructure management.",
+            "tags": [
+                "AWS",
+                "Docker",
+                "CI/CD",
+                "EC2",
+                "S3"
+            ]
+        },
+        {
+            "icon": "🛒",
+            "title": "E-Commerce Solutions",
+            "description": "Complete e-commerce platforms with product management, shopping cart, order processing, and secure payment gateways.",
+            "tags": [
+                "Stripe",
+                "Payment Gateway",
+                "Cart System",
+                "Admin Panel"
+            ]
+        },
+        {
+            "icon": "🎨",
+            "title": "UI/UX & Frontend Design",
+            "description": "Beautiful, responsive frontends with admin dashboards, analytics panels, and pixel-perfect designs that convert visitors into customers.",
+            "tags": [
+                "Tailwind CSS",
+                "Responsive",
+                "Dashboard",
+                "SEO"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "id": 1,
+            "icon": "🏪",
+            "accent": "#ff6fd8",
+            "type": "Full Stack",
+            "category": "web",
+            "name": "LookeBee",
+            "description": "Built a complete e-commerce platform, including the customer website, admin dashboard, backend APIs, authentication, product management, shopping cart, order processing, and AWS deployment.",
+            "tags": [
+                "Remix.js",
+                "Node.js",
+                "Express.js",
+                "AWS",
+                "MongoDB",
+                "Mongoose",
+                "Redux",
+                "Tailwind CSS"
+            ],
+            "links": [
+                {
+                    "url": "http://13.229.171.117:5002/",
+                    "label": "Live Site"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "icon": "💸",
+            "accent": "#6c63ff",
+            "type": "Mobile App",
+            "category": "mobile",
+            "name": "FibrePro",
+            "description": "Developed the React Native mobile application for freelancers and small businesses, featuring financial management tools, and successfully published it on Google Play Store and Apple App Store.",
+            "tags": [
+                "React Native CLI",
+                "Google Play",
+                "App Store"
+            ],
+            "links": [
+                {
+                    "url": "https://play.google.com/store/apps/details?id=com.shaharulsiyam.fibrepro&pcampaignid=web_share",
+                    "label": "Play Store"
+                },
+                {
+                    "url": "https://apps.apple.com/us/app/fibrepro/id6754065847",
+                    "label": "App Store"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "icon": "💸",
+            "accent": "#6c63ff",
+            "type": "Backend",
+            "category": "backend",
+            "name": "Bazarya",
+            "description": "Developed and deployed the backend infrastructure for Bazarya, a marketplace platform similar to Bikroy.com. Built APIs for authentication, subscription management, product listings, and real-time buyer–seller messaging using Socket.io, with deployment on AWS.",
+            "tags": [
+                "Node.js",
+                "Express.js",
+                "Socket.io",
+                "MongoDB",
+                "Mongoose",
+                "AWS"
+            ],
+            "links": [
+                {
+                    "url": "https://play.google.com/store/apps/details?id=com.bazarya.android.app&pcampaignid=web_share",
+                    "label": "Play Store"
+                },
+                {
+                    "url": "https://apps.apple.com/us/app/bazarya/id6746712862",
+                    "label": "App Store"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "icon": "🛒",
+            "accent": "#22c55e",
+            "type": "Backend",
+            "category": "backend",
+            "name": "Divan Dione",
+            "description": "Developed and deployed the backend infrastructure on AWS using Node.js and TypeScript, building APIs for authentication, product management, shopping cart, order processing, and secure payment integration.",
+            "tags": [
+                "Node.js",
+                "TypeScript",
+                "Express.js",
+                "MongoDB",
+                "Mongoose",
+                "Stripe",
+                "AWS"
+            ],
+            "links": [
+                {
+                    "url": "https://play.google.com/store/apps/details?id=divan.dione.android.app&pcampaignid=web_share",
+                    "label": "Play Store"
+                },
+                {
+                    "url": "https://apps.apple.com/us/app/divan-dione/id6747880274",
+                    "label": "App Store"
+                },
+                {
+                    "url": "https://divandione.com",
+                    "label": "Website"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "icon": "⚽",
+            "accent": "#22c55e",
+            "type": "Frontend",
+            "category": "web",
+            "name": "Protippz",
+            "description": "Developed the frontend and admin dashboard for a sports tipping platform featuring rewards, player management, analytics, and an integrated e-commerce store.",
+            "tags": [
+                "Next.js"
+            ],
+            "links": [
+                {
+                    "url": "https://protippz.com/",
+                    "label": "Live Site"
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "icon": "🎬",
+            "accent": "#f59e0b",
+            "type": "Full Stack",
+            "category": "web",
+            "name": "Movie Explorer",
+            "description": "Built and deployed a full-stack movie discovery platform on Vercel, allowing users to search movies, browse trending titles, view detailed information, and watch trailers using TMDB APIs.",
+            "tags": [
+                "React.js",
+                "Node.js",
+                "Express.js",
+                "MongoDB",
+                "TMDB API",
+                "Vercel"
+            ],
+            "links": [
+                {
+                    "url": "https://movie-frontend-zeta.vercel.app/",
+                    "label": "Live Site"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "icon": "🏥",
+            "accent": "#38bdf8",
+            "type": "Backend",
+            "category": "backend",
+            "name": "Ilera (Doctor Booking)",
+            "description": "Developed the backend for a doctor booking platform using Node.js, Express.js, and MongoDB, deployed on AWS. Implemented real-time features with Socket.io for chat, video/audio communication support, appointment scheduling with time slot availability, and integrated payment processing.",
+            "tags": [
+                "Node.js",
+                "Express.js",
+                "MongoDB",
+                "Socket.io",
+                "AWS"
+            ],
+            "links": [
+                {
+                    "url": "https://play.google.com/store/apps/details?id=com.medical.rebecca&pcampaignid=web_share",
+                    "label": "Play Store"
+                },
+                {
+                    "url": "https://apps.apple.com/us/app/ilera/id6730120555",
+                    "label": "App Store"
+                }
+            ]
+        }
+    ],
+    "skills": [
+        {
+            "group": "Frontend & Mobile",
+            "icon": "💻",
+            "items": [
+                {
+                    "name": "React JS",
+                    "level": "Expertise",
+                    "color": "#34d399",
+                    "tags": [
+                        "Hooks",
+                        "Redux",
+                        "Vite"
+                    ]
+                },
+                {
+                    "name": "Next.js",
+                    "level": "Expertise",
+                    "color": "#38bdf8",
+                    "tags": [
+                        "App Router",
+                        "SSR",
+                        "SEO"
+                    ]
+                },
+                {
+                    "name": "JavaScript",
+                    "level": "Expertise",
+                    "color": "#facc15",
+                    "tags": [
+                        "ES6+",
+                        "Async/Await",
+                        "DOM"
+                    ]
+                },
+                {
+                    "name": "TypeScript",
+                    "level": "Expertise",
+                    "color": "#38bdf8",
+                    "tags": [
+                        "Types",
+                        "Interfaces",
+                        "Generics"
+                    ]
+                },
+                {
+                    "name": "React Native",
+                    "level": "Expertise",
+                    "color": "#38bdf8",
+                    "tags": [
+                        "CLI",
+                        "Mobile Apps",
+                        "iOS & Android"
+                    ]
+                },
+                {
+                    "name": "Redux",
+                    "level": "Expertise",
+                    "color": "#a855f7",
+                    "tags": [
+                        "RTK",
+                        "State Management"
+                    ]
+                }
+            ]
+        },
+        {
+            "group": "Backend & Systems",
+            "icon": "⚡",
+            "items": [
+                {
+                    "name": "Node.js",
+                    "level": "Expertise",
+                    "color": "#22c55e",
+                    "tags": [
+                        "Runtime",
+                        "Event Loop",
+                        "Modular"
+                    ]
+                },
+                {
+                    "name": "Express JS",
+                    "level": "Expertise",
+                    "color": "#a855f7",
+                    "tags": [
+                        "REST APIs",
+                        "Middleware",
+                        "Auth"
+                    ]
+                },
+                {
+                    "name": "Socket.io",
+                    "level": "Comfortable",
+                    "color": "#facc15",
+                    "tags": [
+                        "Real-time",
+                        "WebSockets",
+                        "Chat"
+                    ]
+                },
+                {
+                    "name": "Prisma",
+                    "level": "Comfortable",
+                    "color": "#6366f1",
+                    "tags": [
+                        "ORM",
+                        "Migrations",
+                        "Schema"
+                    ]
+                }
+            ]
+        },
+        {
+            "group": "Database & Cloud / DevOps",
+            "icon": "☁️",
+            "items": [
+                {
+                    "name": "MongoDB",
+                    "level": "Expertise",
+                    "color": "#facc15",
+                    "tags": [
+                        "Mongoose",
+                        "Aggregation",
+                        "Atlas"
+                    ]
+                },
+                {
+                    "name": "PostgreSQL",
+                    "level": "Comfortable",
+                    "color": "#38bdf8",
+                    "tags": [
+                        "SQL",
+                        "Relational DB"
+                    ]
+                },
+                {
+                    "name": "AWS",
+                    "level": "Comfortable",
+                    "color": "#f97316",
+                    "tags": [
+                        "EC2",
+                        "S3",
+                        "Deployment"
+                    ]
+                },
+                {
+                    "name": "Docker",
+                    "level": "Comfortable",
+                    "color": "#38bdf8",
+                    "tags": [
+                        "Containers",
+                        "Compose"
+                    ]
+                },
+                {
+                    "name": "CI/CD",
+                    "level": "Comfortable",
+                    "color": "#f97316",
+                    "tags": [
+                        "Automation",
+                        "Workflows"
+                    ]
+                }
+            ]
+        },
+        {
+            "group": "Languages & Fundamentals",
+            "icon": "🧠",
+            "items": [
+                {
+                    "name": "C / C++",
+                    "level": "Comfortable",
+                    "color": "#f97316",
+                    "tags": [
+                        "Pointers",
+                        "Memory",
+                        "OOP"
+                    ]
+                },
+                {
+                    "name": "DSA",
+                    "level": "Comfortable",
+                    "color": "#a855f7",
+                    "tags": [
+                        "Algorithms",
+                        "Problem Solving"
+                    ]
+                },
+                {
+                    "name": "OOP",
+                    "level": "Understanding",
+                    "color": "#22c55e",
+                    "tags": [
+                        "Design Patterns",
+                        "Inheritance"
+                    ]
+                },
+                {
+                    "name": "MySQL",
+                    "level": "Understanding",
+                    "color": "#38bdf8",
+                    "tags": [
+                        "Queries",
+                        "Relational"
+                    ]
+                },
+                {
+                    "name": "PHP",
+                    "level": "Understanding",
+                    "color": "#6366f1",
+                    "tags": [
+                        "Backend",
+                        "WordPress"
+                    ]
+                }
+            ]
+        }
+    ],
+    "experience": [
+        {
+            "date": "May 2024 - Present",
+            "current": true,
+            "role": "Full Stack Developer",
+            "company": "SparkTech Agency",
+            "location": "Remote",
+            "description": "Designed and developed full-stack digital solutions including web platforms, mobile applications, and backend systems using Node.js with modular architecture. Implemented real-time features (messaging, booking, e-commerce, and service provider systems), integrated Stripe onboarding, and handled AWS deployment. Also developed React Native mobile apps and managed publishing to App Store and Google Play.",
+            "tags": [
+                "React.js",
+                "React Native",
+                "Node.js",
+                "Express.js",
+                "MongoDB",
+                "AWS",
+                "Stripe",
+                "TypeScript",
+                "Socket.io",
+                "Docker"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "id": 1,
+            "university": "Uttara University",
+            "degree": "B.Sc. in Computer Science & Engineering (CSE)",
+            "gpa": "",
+            "period": "2025 - Present",
+            "location": "Dhaka, Bangladesh",
+            "icon": "🎓"
+        },
+        {
+            "id": 2,
+            "university": "Pabna Polytechnic Institute",
+            "degree": "Diploma in Computer Engineering",
+            "gpa": "GPA 3.59 out of 4",
+            "period": "2018 - 2022",
+            "location": "Pabna, Bangladesh",
+            "icon": "🏫"
+        }
+    ],
+    "achievements": [
+        {
+            "icon": "🥇",
+            "title": "CS Fundamentals With Phitron",
+            "event": "Phitron (2026)",
+            "description": "Completed the CS Fundamentals course."
+        },
+        {
+            "icon": "🥇",
+            "title": "Complete Web Development",
+            "event": "Programming Hero (2023)",
+            "description": "Completed the Complete Web Development course."
+        },
+        {
+            "icon": "🥇",
+            "title": "Web Design & Development with WordPress",
+            "event": "European IT (2022)",
+            "description": "Completed Web Design & Development course."
+        }
+    ],
+    "testimonials": [
+        {
+            "name": "James Rodriguez",
+            "role": "CEO, TechVenture Inc.",
+            "text": "Mansura and her team delivered our e-commerce platform ahead of schedule. The quality of code and attention to detail was exceptional. They handled everything from backend APIs to the mobile app seamlessly.",
+            "rating": 5
+        },
+        {
+            "name": "Sarah Chen",
+            "role": "Founder, HealthConnect",
+            "text": "Working with this team was a game-changer for our startup. They built our doctor booking app with real-time features that our competitors don't have. Highly recommended for any complex project.",
+            "rating": 5
+        },
+        {
+            "name": "Ahmed Al-Rashid",
+            "role": "CTO, MarketPlex",
+            "text": "The marketplace platform they built for us handles thousands of transactions daily without any issues. Their AWS deployment expertise and Socket.io integration were exactly what we needed.",
+            "rating": 5
+        },
+        {
+            "name": "Emily Watson",
+            "role": "Product Manager, SportsTech",
+            "text": "From concept to deployment, the team exceeded our expectations. The admin dashboard and analytics features they built for our sports platform are incredibly intuitive and powerful.",
+            "rating": 5
+        }
+    ],
+    "about": {
+        "headline": "About Us",
+        "subtitle": "A passionate team turning ideas into reality",
+        "description": "I am Mansura Mira, and I lead a dedicated team of developers and designers. Together, we work across multiple projects — building everything from complex web platforms to mobile applications and enterprise-grade backend systems.",
+        "description2": "Our team doesn't just write code. We partner with you to understand your vision, architect the right solution, and deliver a product that drives real business results. From the first wireframe to production deployment, we handle every step of the journey.",
+        "teamHighlights": [
+            "Collaborative team of full-stack developers & designers",
+            "2+ years delivering production-grade digital products",
+            "Published apps on both App Store & Google Play",
+            "Expertise in real-time systems, e-commerce & SaaS platforms",
+            "End-to-end service: design → develop → deploy → support",
+            "AWS infrastructure & DevOps for enterprise-scale solutions"
+        ],
+        "mission": "We believe every great idea deserves a great product. Our mission is to bridge the gap between your vision and a world-class digital product — on time, on budget, and beyond expectations."
+    },
+    "contact": {
+        "formspreeId": "xjgdzbrg",
+        "headline": "Let's Build Something Amazing",
+        "subtitle": "Ready to start your project? Get in touch and let's discuss how we can bring your idea to life.",
+        "info": [
+            {
+                "icon": "📧",
+                "label": "Email",
+                "value": "shaharulsiyam56@gmail.com",
+                "href": "mailto:shaharulsiyam56@gmail.com"
+            },
+            {
+                "icon": "📱",
+                "label": "Phone / WhatsApp",
+                "value": "+8801566026301",
+                "href": "https://wa.me/8801566026301"
+            },
+            {
+                "icon": "📍",
+                "label": "Location",
+                "value": "Mohakhali, Dhaka, Bangladesh",
+                "href": "#"
+            },
+            {
+                "icon": "🔗",
+                "label": "LinkedIn",
+                "value": "linkedin.com/in/shaharulsiyam",
+                "href": "https://linkedin.com/in/shaharulsiyam"
+            },
+            {
+                "icon": "🐙",
+                "label": "GitHub",
+                "value": "github.com/mdshaharulsiyam",
+                "href": "https://github.com/mdshaharulsiyam"
+            }
+        ]
+    },
+    "navigation": [
+        {
+            "id": "hero",
+            "label": "Home"
+        },
+        {
+            "id": "services",
+            "label": "Services"
+        },
+        {
+            "id": "projects",
+            "label": "Projects"
+        },
+        {
+            "id": "skills",
+            "label": "Skills"
+        },
+        {
+            "id": "experience",
+            "label": "Experience"
+        },
+        {
+            "id": "about",
+            "label": "About"
+        },
+        {
+            "id": "testimonials",
+            "label": "Testimonials"
+        },
+        {
+            "id": "contact",
+            "label": "Contact"
+        }
+    ]
+}
