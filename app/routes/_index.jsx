@@ -1,11 +1,87 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
+import {
+  Globe,
+  Smartphone,
+  Zap,
+  Cloud,
+  ShoppingBag,
+  Layout,
+  Briefcase,
+  Code2,
+  GraduationCap,
+  Award,
+  Mail,
+  Phone,
+  MapPin,
+  ExternalLink,
+  Eye,
+  ArrowRight,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  X,
+  MessageSquare,
+  Folder,
+  Sparkles,
+  Terminal,
+  ShieldCheck,
+} from "lucide-react";
 import data from "../data/portfolio.json";
+
+// ── Custom SVG Icons ──────────────────────────────────────────────────
+function LinkedInIcon({ size = 20, className = "" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+
+function GitHubIcon({ size = 20, className = "" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+      <path d="M9 18c-4.51 2-5-2-7-2" />
+    </svg>
+  );
+}
+
+// ── Icon Registry ─────────────────────────────────────────────────────
+const iconRegistry = {
+  Globe,
+  Smartphone,
+  Zap,
+  Cloud,
+  ShoppingBag,
+  Layout,
+  Briefcase,
+  Code2,
+  GraduationCap,
+  Award,
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin: LinkedInIcon,
+  Github: GitHubIcon,
+  MessageSquare,
+  Folder,
+  Sparkles,
+  Terminal,
+  ShieldCheck,
+};
+
+function RenderIcon({ name, size = 20, className = "" }) {
+  const IconComponent = iconRegistry[name] || Sparkles;
+  return <IconComponent size={size} className={className} />;
+}
 
 // ── Motion Animation Variants ─────────────────────────────────────────
 const fadeInUp = {
-  hidden: { opacity: 0, y: 50, rotateX: -15 },
+  hidden: { opacity: 0, y: 40, rotateX: -10 },
   visible: {
     opacity: 1,
     y: 0,
@@ -15,33 +91,12 @@ const fadeInUp = {
 };
 
 const scaleUpSkew = {
-  hidden: { opacity: 0, scale: 0.85, rotateY: 15, skewY: 3 },
+  hidden: { opacity: 0, scale: 0.9, rotateY: 10 },
   visible: {
     opacity: 1,
     scale: 1,
     rotateY: 0,
-    skewY: 0,
     transition: { type: "spring", stiffness: 120, damping: 12 },
-  },
-};
-
-const slideInLeft = {
-  hidden: { opacity: 0, x: -60, rotateZ: -3 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    rotateZ: 0,
-    transition: { type: "spring", stiffness: 110, damping: 14 },
-  },
-};
-
-const slideInRight = {
-  hidden: { opacity: 0, x: 60, rotateZ: 3 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    rotateZ: 0,
-    transition: { type: "spring", stiffness: 110, damping: 14 },
   },
 };
 
@@ -50,456 +105,13 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.1,
       delayChildren: 0.05,
     },
   },
 };
 
-// ── Dragon Mouse Follower Component ───────────────────────────────────
-// ── Interactive Cursor & Custom Context Menu ───────────────────────────
-function DragonCursor() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [activeTheme, setActiveTheme] = useState("dragon"); // "dragon" | "comet" | "phoenix"
-  const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0 });
-  const [rightClickPulses, setRightClickPulses] = useState([]);
-  const [ripples, setRipples] = useState([]);
-  const [particles, setParticles] = useState([]);
-  const [keyPops, setKeyPops] = useState([]);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const headRef = useRef(null);
-  const segmentsRef = useRef([]);
-  const mousePos = useRef({ x: -100, y: -100 });
-  const numSegments = 24;
-
-  const themes = [
-    { id: "dragon", name: "Dragon Serpent", icon: "🐉" },
-    { id: "comet", name: "Cyber Comet", icon: "☄️" },
-    { id: "phoenix", name: "Neon Phoenix", icon: "🔥" },
-  ];
-
-  useEffect(() => {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-    setIsVisible(true);
-
-    const positions = Array.from({ length: numSegments + 1 }, () => ({ x: -100, y: -100, angle: 0 }));
-
-    const onMouseMove = (e) => {
-      mousePos.current = { x: e.clientX, y: e.clientY };
-    };
-
-    const onMouseOver = (e) => {
-      const target = e.target;
-      const isInteractive =
-        target.closest("a") ||
-        target.closest("button") ||
-        target.closest(".project-card") ||
-        target.closest(".service-card") ||
-        target.closest(".skill-card") ||
-        target.closest("input") ||
-        target.closest("textarea");
-
-      setIsHovered(!!isInteractive);
-    };
-
-    const onContextMenu = (e) => {
-      e.preventDefault();
-      // Ensure menu fits within viewport
-      const menuWidth = 250;
-      const menuHeight = 180;
-      const x = Math.min(e.clientX, window.innerWidth - menuWidth - 10);
-      const y = Math.min(e.clientY, window.innerHeight - menuHeight - 10);
-      setContextMenu({ visible: true, x, y });
-
-      // Trigger right-click pulse animation
-      const pulseId = Date.now() + Math.random();
-      const newPulse = { id: pulseId, x: e.clientX, y: e.clientY };
-      setRightClickPulses((prev) => [...prev.slice(-3), newPulse]);
-      setTimeout(() => {
-        setRightClickPulses((prev) => prev.filter((p) => p.id !== pulseId));
-      }, 750);
-    };
-
-    // Physics state for break & spread effect on click
-    const segmentVelocities = Array.from({ length: numSegments + 1 }, () => ({ vx: 0, vy: 0, vRot: 0, spreadOffsetX: 0, spreadOffsetY: 0 }));
-    let breakTimer = 0; // > 0 when broken/exploding
-
-    const onMouseClick = (e) => {
-      setContextMenu((prev) => (prev.visible ? { ...prev, visible: false } : prev));
-
-      // Trigger break & spread explosion for dragon segments!
-      breakTimer = 35; // Frames to explode & snap back
-      for (let i = 1; i <= numSegments; i++) {
-        // Radial explosion vector outward from cursor
-        const angle = (i / numSegments) * Math.PI * 2 + (Math.random() * 0.8 - 0.4);
-        const force = 18 + Math.random() * 24 + i * 0.5;
-        segmentVelocities[i].vx = Math.cos(angle) * force;
-        segmentVelocities[i].vy = Math.sin(angle) * force;
-        segmentVelocities[i].vRot = (Math.random() - 0.5) * 45;
-      }
-
-      // Trigger ripple
-      const rippleId = Date.now() + Math.random();
-      const newRipple = { id: rippleId, x: e.clientX, y: e.clientY };
-      setRipples((prev) => [...prev.slice(-5), newRipple]);
-      setTimeout(() => {
-        setRipples((prev) => prev.filter((r) => r.id !== rippleId));
-      }, 650);
-
-      // Trigger particle burst
-      const numParticles = 12;
-      const themeColors = {
-        dragon: ["#22d3ee", "#38bdf8", "#c084fc", "#e879f9"],
-        comet: ["#38bdf8", "#e0f2fe", "#818cf8", "#ffffff"],
-        phoenix: ["#fde047", "#fb923c", "#f43f5e", "#ffedd5"],
-      };
-      const colors = themeColors[activeTheme] || themeColors.dragon;
-
-      const newParticles = Array.from({ length: numParticles }, (_, i) => {
-        const angle = (i / numParticles) * Math.PI * 2 + (Math.random() * 0.4 - 0.2);
-        const dist = 40 + Math.random() * 40;
-        return {
-          id: Date.now() + Math.random() + i,
-          x: e.clientX,
-          y: e.clientY,
-          dx: `${Math.cos(angle) * dist}px`,
-          dy: `${Math.sin(angle) * dist}px`,
-          color: colors[i % colors.length],
-        };
-      });
-
-      setParticles((prev) => [...prev.slice(-20), ...newParticles]);
-      setTimeout(() => {
-        setParticles((prev) => prev.filter((p) => !newParticles.some((np) => np.id === p.id)));
-      }, 700);
-    };
-
-    const onKeyDown = (e) => {
-      // Ignore modifier keys alone
-      if (["Control", "Shift", "Alt", "Meta", "Tab", "CapsLock"].includes(e.key)) return;
-
-      const displayChar = e.key === " " ? "SPACE" : e.key.length === 1 ? e.key.toUpperCase() : e.key.toUpperCase();
-      const popId = Date.now() + Math.random();
-      const driftX = (Math.random() - 0.5) * 80;
-      const rot = (Math.random() - 0.5) * 36;
-
-      // Spawn letter near current cursor head position
-      const newKeyPop = {
-        id: popId,
-        char: displayChar,
-        x: mousePos.current.x,
-        y: mousePos.current.y,
-        driftX: `${driftX}px`,
-        rot: `${rot}deg`,
-      };
-
-      setKeyPops((prev) => [...prev.slice(-8), newKeyPop]);
-      setTimeout(() => {
-        setKeyPops((prev) => prev.filter((kp) => kp.id !== popId));
-      }, 1200);
-    };
-
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseover", onMouseOver);
-    window.addEventListener("contextmenu", onContextMenu);
-    window.addEventListener("click", onMouseClick);
-    window.addEventListener("keydown", onKeyDown);
-
-    // Multi-node inverse kinematics loop
-    let animationFrameId;
-    let time = 0;
-
-    const animateDragon = () => {
-      time += 0.05;
-      const wave = Math.sin(time) * 4;
-
-      // Smooth head tracking
-      positions[0].x += (mousePos.current.x - positions[0].x) * 0.28;
-      positions[0].y += (mousePos.current.y - positions[0].y) * 0.28;
-
-      const dx = mousePos.current.x - positions[0].x;
-      const dy = mousePos.current.y - positions[0].y;
-      if (Math.hypot(dx, dy) > 0.001) {
-        positions[0].angle = Math.atan2(dy, dx) * (180 / Math.PI);
-      }
-
-      if (headRef.current) {
-        gsap.set(headRef.current, {
-          x: positions[0].x,
-          y: positions[0].y,
-          rotation: positions[0].angle,
-        });
-      }
-
-      const isBreaking = breakTimer > 0;
-      if (isBreaking) {
-        breakTimer--;
-      }
-
-      // Chain spine segments
-      for (let i = 1; i <= numSegments; i++) {
-        const prev = positions[i - 1];
-        const current = positions[i];
-        const vel = segmentVelocities[i];
-
-        if (isBreaking) {
-          // Explode/spread outward with friction damping
-          vel.spreadOffsetX += vel.vx;
-          vel.spreadOffsetY += vel.vy;
-          vel.vx *= 0.82;
-          vel.vy *= 0.82;
-          current.angle += vel.vRot;
-          vel.vRot *= 0.85;
-
-          const renderX = current.x + vel.spreadOffsetX;
-          const renderY = current.y + vel.spreadOffsetY;
-
-          if (segmentsRef.current[i - 1]) {
-            gsap.set(segmentsRef.current[i - 1], {
-              x: renderX,
-              y: renderY,
-              rotation: current.angle,
-              scale: 1 + (breakTimer / 35) * 0.4,
-            });
-          }
-        } else {
-          // Snap spread offset back to 0 smoothly
-          vel.spreadOffsetX *= 0.7;
-          vel.spreadOffsetY *= 0.7;
-
-          const segDx = prev.x - current.x;
-          const segDy = prev.y - current.y;
-          const dist = Math.hypot(segDx, segDy);
-          if (dist > 0.001) {
-            current.angle = Math.atan2(segDy, segDx) * (180 / Math.PI);
-          }
-
-          // Inverse kinematics trailing elasticity with slight wave motion
-          const easeFactor = 0.35 - i * 0.008;
-          current.x += segDx * easeFactor + Math.cos(current.angle * Math.PI / 180 + Math.PI / 2) * (wave * (i / numSegments) * 0.4);
-          current.y += segDy * easeFactor + Math.sin(current.angle * Math.PI / 180 + Math.PI / 2) * (wave * (i / numSegments) * 0.4);
-
-          if (segmentsRef.current[i - 1]) {
-            gsap.set(segmentsRef.current[i - 1], {
-              x: current.x + vel.spreadOffsetX,
-              y: current.y + vel.spreadOffsetY,
-              rotation: current.angle,
-              scale: 1,
-            });
-          }
-        }
-      }
-
-      animationFrameId = requestAnimationFrame(animateDragon);
-    };
-
-    animateDragon();
-
-    return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseover", onMouseOver);
-      window.removeEventListener("contextmenu", onContextMenu);
-      window.removeEventListener("click", onMouseClick);
-      window.removeEventListener("keydown", onKeyDown);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
-  if (!isVisible) return null;
-
-  return (
-    <>
-      {/* ── Custom Right-Click Context Menu ── */}
-      {contextMenu.visible && (
-        <div
-          className="custom-context-menu"
-          style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="context-menu-header">Cursor Animation</div>
-          {themes.map((theme) => (
-            <button
-              key={theme.id}
-              className={`context-menu-item ${activeTheme === theme.id ? "active" : ""}`}
-              onClick={() => {
-                setActiveTheme(theme.id);
-                setContextMenu({ visible: false, x: 0, y: 0 });
-              }}
-            >
-              <span className="context-menu-icon">{theme.icon}</span>
-              <span>{theme.name}</span>
-              {activeTheme === theme.id && <span className="context-menu-check">✓</span>}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {/* ── Cursor Renderer ── */}
-      <div className={`dragon-cursor-container ${isHovered ? "hovered" : ""}`}>
-        {/* Head Element based on active theme */}
-        <div ref={headRef} className="dragon-head">
-          {activeTheme === "dragon" && (
-            <svg viewBox="0 0 40 24" className="dragon-head-svg">
-              <defs>
-                <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#22d3ee" />
-                  <stop offset="50%" stopColor="#38bdf8" />
-                  <stop offset="100%" stopColor="#c084fc" />
-                </linearGradient>
-              </defs>
-              <path d="M0,12 Q8,2 20,2 Q36,2 40,12 Q36,22 20,22 Q8,22 0,12 Z" fill="url(#cyanGlow)" />
-              <circle cx="28" cy="8" r="2.5" fill="#fff" />
-              <circle cx="28" cy="16" r="2.5" fill="#fff" />
-              <path d="M12,2 Q6,-6 2,-8" stroke="#22d3ee" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-              <path d="M12,22 Q6,30 2,32" stroke="#22d3ee" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-            </svg>
-          )}
-
-          {activeTheme === "comet" && (
-            <svg viewBox="0 0 32 32" className="dragon-head-svg">
-              <defs>
-                <radialGradient id="cometCore" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#ffffff" />
-                  <stop offset="40%" stopColor="#38bdf8" />
-                  <stop offset="100%" stopColor="#818cf8" />
-                </radialGradient>
-              </defs>
-              <circle cx="16" cy="16" r="12" fill="url(#cometCore)" filter="drop-shadow(0 0 10px #38bdf8)" />
-              <polygon points="16,2 20,12 30,16 20,20 16,30 12,20 2,16 12,12" fill="#e0f2fe" opacity="0.8" />
-            </svg>
-          )}
-
-          {activeTheme === "phoenix" && (
-            <svg viewBox="0 0 36 28" className="dragon-head-svg">
-              <defs>
-                <linearGradient id="phoenixFire" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#fde047" />
-                  <stop offset="45%" stopColor="#fb923c" />
-                  <stop offset="100%" stopColor="#f43f5e" />
-                </linearGradient>
-              </defs>
-              <path d="M4,14 C10,2 26,0 34,14 C26,28 10,26 4,14 Z" fill="url(#phoenixFire)" filter="drop-shadow(0 0 12px #fb923c)" />
-              <circle cx="24" cy="10" r="2" fill="#fff" />
-              <path d="M10,4 Q18,-4 26,2" stroke="#fde047" strokeWidth="2" fill="none" />
-              <path d="M10,24 Q18,32 26,26" stroke="#fde047" strokeWidth="2" fill="none" />
-            </svg>
-          )}
-        </div>
-
-        {/* Trail Segments based on active theme */}
-        {Array.from({ length: numSegments }).map((_, idx) => (
-          <div
-            key={idx}
-            ref={(el) => (segmentsRef.current[idx] = el)}
-            className={`dragon-segment segment-${idx} ${idx > numSegments - 5 ? "tail-tip" : ""}`}
-          >
-            {activeTheme === "dragon" && (
-              <svg viewBox="0 0 24 24" className="dragon-segment-svg">
-                <defs>
-                  <linearGradient id={`cyanGlow-${idx}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#22d3ee" />
-                    <stop offset="50%" stopColor="#38bdf8" />
-                    <stop offset="100%" stopColor="#c084fc" />
-                  </linearGradient>
-                </defs>
-                <circle cx="12" cy="12" r={Math.max(2, 9 - idx * 0.35)} fill={`url(#cyanGlow-${idx})`} />
-                <path d="M12,2 L8,9 L16,9 Z" fill="#22d3ee" opacity={0.9 - idx * 0.03} />
-                <path d="M12,22 L8,15 L16,15 Z" fill="#22d3ee" opacity={0.9 - idx * 0.03} />
-              </svg>
-            )}
-
-            {activeTheme === "comet" && (
-              <svg viewBox="0 0 24 24" className="dragon-segment-svg">
-                <defs>
-                  <radialGradient id={`cometGrad-${idx}`} cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#f0f9ff" stopOpacity={1 - idx * 0.04} />
-                    <stop offset="60%" stopColor="#38bdf8" stopOpacity={0.9 - idx * 0.035} />
-                    <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
-                  </radialGradient>
-                </defs>
-                <circle cx="12" cy="12" r={Math.max(1.5, 11 - idx * 0.42)} fill={`url(#cometGrad-${idx})`} />
-                {idx % 2 === 0 && (
-                  <circle cx="12" cy="12" r={Math.max(1, 4 - idx * 0.15)} fill="#ffffff" opacity={0.8 - idx * 0.03} />
-                )}
-              </svg>
-            )}
-
-            {activeTheme === "phoenix" && (
-              <svg viewBox="0 0 24 24" className="dragon-segment-svg">
-                <defs>
-                  <linearGradient id={`phoenixGrad-${idx}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#fde047" stopOpacity={1 - idx * 0.035} />
-                    <stop offset="50%" stopColor="#fb923c" stopOpacity={0.9 - idx * 0.035} />
-                    <stop offset="100%" stopColor="#e11d48" stopOpacity={0.8 - idx * 0.035} />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M12,2 C16,8 20,12 12,22 C4,12 8,8 12,2 Z"
-                  fill={`url(#phoenixGrad-${idx})`}
-                  transform={`scale(${Math.max(0.25, 1 - idx * 0.032)}) transform-origin(12 12)`}
-                />
-                <circle cx="12" cy="12" r={Math.max(1, 3 - idx * 0.1)} fill="#fde047" opacity={0.9 - idx * 0.03} />
-              </svg>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* ── Click Ripple Rings ── */}
-      {ripples.map((ripple) => (
-        <div
-          key={ripple.id}
-          className={`cursor-click-ripple theme-${activeTheme}`}
-          style={{ top: `${ripple.y}px`, left: `${ripple.x}px` }}
-        />
-      ))}
-
-      {/* ── Click Particle Burst ── */}
-      {particles.map((p) => (
-        <div
-          key={p.id}
-          className="cursor-click-particle"
-          style={{
-            top: `${p.y}px`,
-            left: `${p.x}px`,
-            backgroundColor: p.color,
-            boxShadow: `0 0 8px ${p.color}`,
-            "--dx": p.dx,
-            "--dy": p.dy,
-          }}
-        />
-      ))}
-
-      {/* ── Floating Keypress Pop Letters ── */}
-      {keyPops.map((kp) => (
-        <div
-          key={kp.id}
-          className="keyboard-letter-pop"
-          style={{
-            top: `${kp.y}px`,
-            left: `${kp.x}px`,
-            "--driftX": kp.driftX,
-            "--rot": kp.rot,
-          }}
-        >
-          {kp.char}
-        </div>
-      ))}
-
-      {/* ── Right-Click Pulse Wave Ring ── */}
-      {rightClickPulses.map((pulse) => (
-        <div
-          key={pulse.id}
-          className="right-click-pulse"
-          style={{ top: `${pulse.y}px`, left: `${pulse.x}px` }}
-        />
-      ))}
-    </>
-  );
-}
-
-// ── 3D Card Tilt Component ─────────────────────────────────────────────
+// ── Tilt Card ────────────────────────────────────────────────────────
 function TiltCard({ children, className = "", style = {}, ...props }) {
   const cardRef = useRef(null);
 
@@ -510,16 +122,15 @@ function TiltCard({ children, className = "", style = {}, ...props }) {
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-
-    const rotateX = ((y - centerY) / centerY) * -12;
-    const rotateY = ((x - centerX) / centerX) * 12;
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
 
     gsap.to(cardRef.current, {
-      rotateX: rotateX,
-      rotateY: rotateY,
-      transformPerspective: 1000,
-      duration: 0.3,
+      rotateX,
+      rotateY,
+      duration: 0.4,
       ease: "power2.out",
+      transformPerspective: 1000,
     });
   };
 
@@ -528,7 +139,7 @@ function TiltCard({ children, className = "", style = {}, ...props }) {
     gsap.to(cardRef.current, {
       rotateX: 0,
       rotateY: 0,
-      duration: 0.5,
+      duration: 0.6,
       ease: "power2.out",
     });
   };
@@ -536,10 +147,10 @@ function TiltCard({ children, className = "", style = {}, ...props }) {
   return (
     <motion.div
       ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       className={className}
       style={{ transformStyle: "preserve-3d", ...style }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       {...props}
     >
       {children}
@@ -547,27 +158,28 @@ function TiltCard({ children, className = "", style = {}, ...props }) {
   );
 }
 
-// ── Navbar Component ──────────────────────────────────────────────────
+// ── Navigation Bar ────────────────────────────────────────────────────
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
-      // scroll spy
+      setScrolled(window.scrollY > 40);
       const sections = data.navigation.map((n) => n.id);
+      const scrollPos = window.scrollY + 200;
+
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
-        if (el && el.getBoundingClientRect().top <= 150) {
+        if (el && el.offsetTop <= scrollPos) {
           setActiveSection(sections[i]);
           break;
         }
       }
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -579,14 +191,17 @@ function Navbar() {
   return (
     <>
       <motion.nav
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`navbar ${scrolled ? "scrolled" : ""}`}
       >
         <div className="navbar-inner">
           <a href="#hero" className="navbar-logo" onClick={(e) => { e.preventDefault(); handleNav("hero"); }}>
-            Mansura.
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+              <Code2 size={22} style={{ color: "#ffffff" }} />
+              {data.profile.name}
+            </span>
           </a>
 
           <div className="navbar-links">
@@ -601,7 +216,7 @@ function Navbar() {
               </a>
             ))}
             <a href="#contact" className="navbar-cta" onClick={(e) => { e.preventDefault(); handleNav("contact"); }}>
-              Get a Quote
+              Start Project
             </a>
           </div>
 
@@ -632,7 +247,7 @@ function Navbar() {
 }
 
 // ── Typewriter Hook ───────────────────────────────────────────────────
-function useTypewriter(lines, typingSpeed = 70, pause = 2000) {
+function useTypewriter(lines, typingSpeed = 60, pause = 2200) {
   const [text, setText] = useState("");
   const lineIndex = useRef(0);
   const charIndex = useRef(0);
@@ -660,7 +275,7 @@ function useTypewriter(lines, typingSpeed = 70, pause = 2000) {
         }
       }
 
-      setTimeout(tick, isDeleting.current ? 35 : typingSpeed);
+      setTimeout(tick, isDeleting.current ? 30 : typingSpeed);
     };
 
     const timeout = setTimeout(tick, 500);
@@ -682,7 +297,7 @@ function HeroSection() {
         { scale: 0.8, opacity: 0.3 },
         {
           scale: 1.2,
-          opacity: 0.7,
+          opacity: 0.6,
           duration: 4,
           repeat: -1,
           yoyo: true,
@@ -710,13 +325,12 @@ function HeroSection() {
           </motion.div>
 
           <motion.h1 variants={fadeInUp} className="hero-title">
-            We Build <br />
-            <span className="gradient-text">Digital Products</span>
-            <br />That Matter
+            Engineering Digital Products <br />
+            <span className="gradient-text">Built to Scale</span>
           </motion.h1>
 
           <motion.p variants={fadeInUp} className="hero-name">
-            I'm <span>{data.profile.name}</span> — {data.profile.role}
+            Welcome to <span>{data.profile.name}</span> — {data.profile.role}
           </motion.p>
 
           <motion.p variants={fadeInUp} className="hero-typewriter">
@@ -729,22 +343,24 @@ function HeroSection() {
 
           <motion.div variants={fadeInUp} className="hero-ctas">
             <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               href="#contact"
               className="btn-primary"
               onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
             >
-              🚀 {data.hero.ctaPrimary}
+              <span>{data.hero.ctaPrimary}</span>
+              <ArrowRight size={16} />
             </motion.a>
             <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               href="#projects"
               className="btn-secondary"
               onClick={(e) => { e.preventDefault(); document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }); }}
             >
-              📁 {data.hero.ctaSecondary}
+              <Folder size={16} />
+              <span>{data.hero.ctaSecondary}</span>
             </motion.a>
           </motion.div>
 
@@ -753,7 +369,7 @@ function HeroSection() {
               <motion.div
                 key={stat.label}
                 className="hero-stat"
-                whileHover={{ y: -4, backgroundColor: "rgba(255, 255, 255, 0.07)" }}
+                whileHover={{ y: -4, backgroundColor: "rgba(255, 255, 255, 0.06)" }}
               >
                 <div className="hero-stat-value">{stat.value}</div>
                 <div className="hero-stat-label">{stat.label}</div>
@@ -778,11 +394,12 @@ function ServicesSection() {
           variants={fadeInUp}
           className="section-header"
         >
-          <span className="section-label">💼 What We Offer</span>
-          <h2 className="section-title">Our Services</h2>
+          <span className="section-label">
+            <Briefcase size={14} /> What We Offer
+          </span>
+          <h2 className="section-title">Engineering Services</h2>
           <p className="section-subtitle">
-            From concept to deployment, we provide end-to-end digital solutions
-            tailored to your business needs.
+            From technical discovery to cloud deployment, devsrecipe builds resilient software solutions for web and mobile.
           </p>
         </motion.div>
 
@@ -799,7 +416,9 @@ function ServicesSection() {
               variants={scaleUpSkew}
               className="service-card"
             >
-              <span className="service-icon">{service.icon}</span>
+              <div className="service-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 44, height: 44, borderRadius: 10, background: "rgba(255, 255, 255, 0.06)", border: "1px solid rgba(255, 255, 255, 0.15)", marginBottom: 16 }}>
+                <RenderIcon name={service.icon} size={22} />
+              </div>
               <h3 className="service-title">{service.title}</h3>
               <p className="service-desc">{service.description}</p>
               <div className="service-tags">
@@ -820,7 +439,7 @@ function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [activeModalImages, setActiveModalImages] = useState(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [slideDirection, setSlideDirection] = useState(1); // 1 = next (right-to-left), -1 = prev (left-to-right)
+  const [slideDirection, setSlideDirection] = useState(1);
 
   const categories = ["all", ...new Set(data.projects.map((p) => p.category))];
   const filteredProjects = activeFilter === "all"
@@ -861,11 +480,12 @@ function ProjectsSection() {
           variants={fadeInUp}
           className="section-header"
         >
-          <span className="section-label">🛠️ Our Portfolio</span>
-          <h2 className="section-title">Projects We've Delivered</h2>
+          <span className="section-label">
+            <Code2 size={14} /> Engineering Portfolio
+          </span>
+          <h2 className="section-title">Featured Projects</h2>
           <p className="section-subtitle">
-            Real projects, real results. From e-commerce platforms to mobile apps
-            — we build products that perform.
+            Production systems, mobile platforms, and enterprise web applications architected by devsrecipe.
           </p>
         </motion.div>
 
@@ -879,8 +499,8 @@ function ProjectsSection() {
           {categories.map((cat) => (
             <motion.button
               key={cat}
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.92 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className={`filter-btn ${activeFilter === cat ? "active" : ""}`}
               onClick={() => setActiveFilter(cat)}
             >
@@ -900,56 +520,61 @@ function ProjectsSection() {
                 transition={{ type: "spring", stiffness: 120, damping: 14 }}
                 key={project.id}
                 className="project-card"
-                style={{ "--card-accent": project.accent }}
               >
-              {project.image && (
-                <div
-                  className="project-banner"
-                  onClick={() => openPreview(project, 0)}
-                  style={{ cursor: "pointer" }}
-                  title="Click to view screenshots"
-                >
-                  <img src={project.image} alt={project.name} loading="lazy" />
-                  <span className="banner-hover-hint">🔍 View Screenshots</span>
+                {project.image && (
+                  <div
+                    className="project-banner"
+                    onClick={() => openPreview(project, 0)}
+                    style={{ cursor: "pointer" }}
+                    title="Click to view screenshots"
+                  >
+                    <img src={project.image} alt={project.name} loading="lazy" />
+                    <span className="banner-hover-hint">
+                      <Eye size={14} /> View Screenshots
+                    </span>
+                  </div>
+                )}
+                <div className="project-icon" style={{ marginTop: 12, display: "flex", alignItems: "center", gap: 8 }}>
+                  <RenderIcon name={project.icon} size={20} />
+                  <span className="project-type" style={{ color: "#a1a1aa", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                    {project.type}
+                  </span>
                 </div>
-              )}
-              <div className="project-icon">{project.icon}</div>
-              <div className="project-type" style={{ color: project.accent }}>
-                {project.type}
-              </div>
-              <h3 className="project-name">{project.name}</h3>
-              <p className="project-desc">{project.description}</p>
-              <div className="project-tags">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="project-tag">{tag}</span>
-                ))}
-              </div>
-              <div className="project-links">
-                {project.links.map((link, i) => {
-                  const isImageLink = link.label.toLowerCase().includes("preview") || link.url.endsWith(".png") || link.url.endsWith(".jpg");
-                  if (isImageLink) {
+                <h3 className="project-name" style={{ marginTop: 8 }}>{project.name}</h3>
+                <p className="project-desc">{project.description}</p>
+                <div className="project-tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="project-tag">{tag}</span>
+                  ))}
+                </div>
+                <div className="project-links">
+                  {project.links.map((link, i) => {
+                    const isImageLink = link.label.toLowerCase().includes("preview") || link.url.endsWith(".png") || link.url.endsWith(".jpg");
+                    if (isImageLink) {
+                      return (
+                        <button
+                          key={i}
+                          type="button"
+                          onClick={() => openPreview(project, 0)}
+                          className="project-link"
+                          style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+                        >
+                          <Eye size={14} /> {link.label}
+                        </button>
+                      );
+                    }
                     return (
-                      <button
-                        key={i}
-                        type="button"
-                        onClick={() => openPreview(project, 0)}
-                        className="project-link"
-                      >
-                        🖼️ {link.label}
-                      </button>
+                      <a key={i} href={link.url} target="_blank" rel="noreferrer" className="project-link" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                        <span>{link.label}</span>
+                        <ExternalLink size={14} />
+                      </a>
                     );
-                  }
-                  return (
-                    <a key={i} href={link.url} target="_blank" rel="noreferrer" className="project-link">
-                      {link.label} ↗
-                    </a>
-                  );
-                })}
-              </div>
-            </TiltCard>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+                  })}
+                </div>
+              </TiltCard>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
       {/* Image Preview Lightbox Modal */}
@@ -976,7 +601,7 @@ function ProjectsSection() {
                 onClick={() => setActiveModalImages(null)}
                 title="Close modal"
               >
-                ✕
+                <X size={20} />
               </button>
               <div className="image-modal-main">
                 {activeModalImages.length > 1 && (
@@ -986,7 +611,7 @@ function ProjectsSection() {
                     onClick={handlePrevImage}
                     title="Previous image"
                   >
-                    ❮
+                    <ChevronLeft size={24} />
                   </button>
                 )}
                 <AnimatePresence mode="wait" custom={slideDirection}>
@@ -1025,7 +650,7 @@ function ProjectsSection() {
                     onClick={handleNextImage}
                     title="Next image"
                   >
-                    ❯
+                    <ChevronRight size={24} />
                   </button>
                 )}
               </div>
@@ -1060,9 +685,10 @@ function SkillsSection() {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
 
   const levelLabels = {
-    Expertise: "★ Primary",
-    Comfortable: "⚡ Proficient",
-    Understanding: "📖 Familiar",
+    Expertise: "Primary Stack",
+    Proficient: "Proficient",
+    Comfortable: "Proficient",
+    Understanding: "Familiar",
   };
 
   const currentGroup = data.skills[activeCategoryIndex] || data.skills[0];
@@ -1079,10 +705,12 @@ function SkillsSection() {
     <section id="skills" className="section pattern-bg">
       <div className="container">
         <div className="section-header">
-          <span className="section-label">🧠 Tech Stack</span>
-          <h2 className="section-title">Skills & Technologies</h2>
+          <span className="section-label">
+            <Zap size={14} /> Skills & Stack
+          </span>
+          <h2 className="section-title">Technical Expertise</h2>
           <p className="section-subtitle">
-            The tools and technologies our team uses to build world-class digital products.
+            The core tools, languages, and frameworks devsrecipe leverages to build high-performance applications.
           </p>
         </div>
 
@@ -1096,7 +724,7 @@ function SkillsSection() {
                 className={`skills-tab-btn ${activeCategoryIndex === idx ? "active" : ""}`}
                 onClick={() => setActiveCategoryIndex(idx)}
               >
-                <span>{group.icon}</span>
+                <RenderIcon name={group.icon} size={16} />
                 <span>{group.group}</span>
               </button>
             ))}
@@ -1109,7 +737,7 @@ function SkillsSection() {
               onClick={handlePrev}
               title="Previous Category"
             >
-              ❮
+              <ChevronLeft size={18} />
             </button>
             <span className="skills-counter">
               {activeCategoryIndex + 1} / {data.skills.length}
@@ -1120,7 +748,7 @@ function SkillsSection() {
               onClick={handleNext}
               title="Next Category"
             >
-              ❯
+              <ChevronRight size={18} />
             </button>
           </div>
         </div>
@@ -1136,8 +764,8 @@ function SkillsSection() {
             className="skills-slide-container"
           >
             <div className="skill-group-header">
-              <span className="skill-group-icon">{currentGroup.icon}</span>
-              <span className="skill-group-title">{currentGroup.group}</span>
+              <RenderIcon name={currentGroup.icon} size={20} />
+              <span className="skill-group-title" style={{ marginLeft: 8 }}>{currentGroup.group}</span>
               <span className="skill-group-count">
                 {currentGroup.items.length} {currentGroup.items.length === 1 ? "skill" : "skills"}
               </span>
@@ -1154,7 +782,7 @@ function SkillsSection() {
                   key={skill.name}
                   variants={fadeInUp}
                   className="skill-card"
-                  style={{ "--skill-color": skill.color }}
+                  style={{ "--skill-color": "#ffffff" }}
                 >
                   <div
                     style={{
@@ -1163,8 +791,7 @@ function SkillsSection() {
                       left: 0,
                       right: 0,
                       height: "2px",
-                      background: skill.color,
-                      opacity: 0.3,
+                      background: "rgba(255, 255, 255, 0.3)",
                     }}
                   />
 
@@ -1172,12 +799,12 @@ function SkillsSection() {
                     <div className="skill-name-row">
                       <span
                         className="skill-dot"
-                        style={{ background: skill.color, boxShadow: `0 0 8px ${skill.color}66` }}
+                        style={{ background: "#ffffff", boxShadow: `0 0 8px rgba(255, 255, 255, 0.4)` }}
                       />
                       <span className="skill-name">{skill.name}</span>
                     </div>
                     <span className={`skill-badge ${skill.level.toLowerCase()}`}>
-                      {levelLabels[skill.level]}
+                      {levelLabels[skill.level] || skill.level}
                     </span>
                   </div>
 
@@ -1210,10 +837,12 @@ function ExperienceSection() {
           variants={fadeInUp}
           className="section-header"
         >
-          <span className="section-label">💼 Career Journey</span>
-          <h2 className="section-title">Professional Experience</h2>
+          <span className="section-label">
+            <Briefcase size={14} /> Career & Practice
+          </span>
+          <h2 className="section-title">Engineering Experience</h2>
           <p className="section-subtitle">
-            Our team's track record of delivering complex digital solutions.
+            Our timeline of leadership, architecture design, and production code delivery.
           </p>
         </motion.div>
 
@@ -1249,7 +878,7 @@ function ExperienceSection() {
             variants={fadeInUp}
             style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 700, color: "var(--text-primary)", marginBottom: 24, textAlign: "center" }}
           >
-            Certifications & Achievements
+            Certifications & Technical Credentials
           </motion.h3>
           <motion.div
             initial="hidden"
@@ -1262,12 +891,14 @@ function ExperienceSection() {
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                whileHover={{ y: -4, scale: 1.02 }}
+                whileHover={{ y: -4 }}
                 style={{ padding: 24, background: "var(--bg-card)", border: "1px solid var(--border-subtle)", borderRadius: 16, transition: "var(--transition-fast)" }}
               >
-                <div style={{ fontSize: 28, marginBottom: 8 }}>{ach.icon}</div>
+                <div style={{ marginBottom: 12, color: "#ffffff" }}>
+                  <RenderIcon name={ach.icon} size={26} />
+                </div>
                 <div style={{ fontSize: 16, fontWeight: 700, color: "var(--text-primary)", marginBottom: 4 }}>{ach.title}</div>
-                <div style={{ fontSize: 13, color: "var(--accent-purple)", marginBottom: 6 }}>{ach.event}</div>
+                <div style={{ fontSize: 13, color: "#a1a1aa", marginBottom: 6 }}>{ach.event}</div>
                 <div style={{ fontSize: 14, color: "var(--text-muted)", lineHeight: 1.6 }}>{ach.description}</div>
               </motion.div>
             ))}
@@ -1290,7 +921,9 @@ function AboutSection() {
           variants={fadeInUp}
           className="section-header"
         >
-          <span className="section-label">👥 Our Team</span>
+          <span className="section-label">
+            <Globe size={14} /> Our Studio
+          </span>
           <h2 className="section-title">{data.about.headline}</h2>
           <p className="section-subtitle">{data.about.subtitle}</p>
         </motion.div>
@@ -1305,8 +938,9 @@ function AboutSection() {
           >
             <p className="about-text">{data.about.description}</p>
             <p className="about-text">{data.about.description2}</p>
-            <div className="about-mission">
-              💜 {data.about.mission}
+            <div className="about-mission" style={{ borderLeftColor: "#ffffff" }}>
+              <Terminal size={18} style={{ display: "inline-block", marginRight: 8, verticalAlign: "middle" }} />
+              {data.about.mission}
             </div>
           </motion.div>
 
@@ -1318,7 +952,7 @@ function AboutSection() {
               variants={fadeInUp}
               className="about-highlights"
             >
-              <h3>What Sets Us Apart</h3>
+              <h3>Studio Highlights</h3>
               {data.about.teamHighlights.map((item, i) => (
                 <div key={i} className="highlight-item">
                   <span className="highlight-dot" />
@@ -1334,8 +968,8 @@ function AboutSection() {
               variants={staggerContainer}
               className="education-cards"
             >
-              <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, color: "var(--text-primary)", marginBottom: 16 }}>
-                🎓 Education
+              <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, color: "var(--text-primary)", marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
+                <GraduationCap size={18} /> Education & Academic Background
               </h3>
               {data.education.map((edu) => (
                 <motion.div
@@ -1345,7 +979,10 @@ function AboutSection() {
                   className="education-card"
                 >
                   <div className="education-top">
-                    <span className="education-uni">{edu.icon} {edu.university}</span>
+                    <span className="education-uni" style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                      <RenderIcon name={edu.icon} size={16} />
+                      {edu.university}
+                    </span>
                     <span className="education-period">{edu.period}</span>
                   </div>
                   <div className="education-degree">{edu.degree}</div>
@@ -1372,10 +1009,12 @@ function TestimonialsSection() {
           variants={fadeInUp}
           className="section-header"
         >
-          <span className="section-label">💬 Client Feedback</span>
-          <h2 className="section-title">What Our Clients Say</h2>
+          <span className="section-label">
+            <MessageSquare size={14} /> Client Endorsements
+          </span>
+          <h2 className="section-title">Client Feedback</h2>
           <p className="section-subtitle">
-            Don't just take our word for it — hear from the people we've worked with.
+            What technical leads and founders say about collaborating with devsrecipe.
           </p>
         </motion.div>
 
@@ -1390,16 +1029,16 @@ function TestimonialsSection() {
             <motion.div
               key={i}
               variants={fadeInUp}
-              whileHover={{ y: -6, scale: 1.02 }}
+              whileHover={{ y: -6 }}
               className="testimonial-card"
             >
               <div className="testimonial-quote">"</div>
-              <div className="testimonial-stars">
+              <div className="testimonial-stars" style={{ color: "#ffffff" }}>
                 {"★".repeat(test.rating)}
               </div>
               <p className="testimonial-text">{test.text}</p>
               <div className="testimonial-author">
-                <div className="testimonial-avatar">
+                <div className="testimonial-avatar" style={{ background: "rgba(255, 255, 255, 0.1)", color: "#ffffff", border: "1px solid rgba(255, 255, 255, 0.2)" }}>
                   {test.name.split(" ").map((n) => n[0]).join("")}
                 </div>
                 <div className="testimonial-info">
@@ -1429,26 +1068,26 @@ function ContactSection() {
     const formData = new FormData(form);
     const name = formData.get("name");
     const userEmail = formData.get("email");
-    const subject = formData.get("subject") || "New Portfolio Contact Message";
+    const subject = formData.get("subject") || "New devsrecipe Project Inquiry";
     const message = formData.get("message");
 
     const payload = {
-      to: data.profile.email, // Send to mansuramira0273@gmail.com
-      subject: `[Portfolio Inquiry] ${subject} from ${name}`,
+      to: data.profile.email,
+      subject: `[devsrecipe Inquiry] ${subject} from ${name}`,
       text: `Name: ${name}\nEmail: ${userEmail}\nSubject: ${subject}\n\nMessage:\n${message}`,
       html: `
-        <div style="font-family: Arial, sans-serif; padding: 24px; background-color: #0a0a12; color: #f0f0f5; border-radius: 12px; border: 1px solid #a78bfa;">
-          <h2 style="color: #a78bfa; margin-bottom: 16px;">🚀 New Portfolio Inquiry</h2>
+        <div style="font-family: Arial, sans-serif; padding: 24px; background-color: #050505; color: #ffffff; border-radius: 12px; border: 1px solid #333333;">
+          <h2 style="color: #ffffff; margin-bottom: 16px;">devsrecipe — New Technical Inquiry</h2>
           <div style="background-color: rgba(255, 255, 255, 0.05); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
             <p style="margin: 6px 0;"><strong>Name:</strong> ${name}</p>
-            <p style="margin: 6px 0;"><strong>Email:</strong> <a href="mailto:${userEmail}" style="color: #60a5fa;">${userEmail}</a></p>
+            <p style="margin: 6px 0;"><strong>Email:</strong> <a href="mailto:${userEmail}" style="color: #ffffff;">${userEmail}</a></p>
             <p style="margin: 6px 0;"><strong>Subject:</strong> ${subject}</p>
           </div>
-          <div style="background-color: rgba(255, 255, 255, 0.03); padding: 16px; border-radius: 8px; border-left: 4px solid #a78bfa;">
-            <h3 style="margin-top: 0; color: #60a5fa;">Message:</h3>
-            <p style="white-space: pre-wrap; line-height: 1.6; color: #d1d5db;">${message}</p>
+          <div style="background-color: rgba(255, 255, 255, 0.03); padding: 16px; border-radius: 8px; border-left: 4px solid #ffffff;">
+            <h3 style="margin-top: 0; color: #ffffff;">Message:</h3>
+            <p style="white-space: pre-wrap; line-height: 1.6; color: #a1a1aa;">${message}</p>
           </div>
-          <p style="margin-top: 24px; font-size: 12px; color: #6b7280; text-align: center;">Sent via Mansura Mira Portfolio Contact Form</p>
+          <p style="margin-top: 24px; font-size: 12px; color: #71717a; text-align: center;">Sent via devsrecipe Contact Form</p>
         </div>
       `.trim(),
     };
@@ -1465,7 +1104,7 @@ function ContactSection() {
         form.reset();
         setTimeout(() => setStatus("idle"), 5000);
       } else {
-        throw new Error("Failed to send email");
+        throw new Error("Failed to send message");
       }
     } catch {
       setStatus("error");
@@ -1477,7 +1116,9 @@ function ContactSection() {
     <section id="contact" className="section pattern-bg">
       <div className="container">
         <div className="section-header">
-          <span className="section-label">📬 Get In Touch</span>
+          <span className="section-label">
+            <Mail size={14} /> Get In Touch
+          </span>
           <h2 className="section-title">{data.contact.headline}</h2>
           <p className="section-subtitle">{data.contact.subtitle}</p>
         </div>
@@ -1489,13 +1130,15 @@ function ContactSection() {
               Let's Discuss Your Project
             </h3>
             <p style={{ fontSize: 15, color: "var(--text-secondary)", lineHeight: 1.8 }}>
-              Whether you need a complete web platform, a mobile app, or a scalable backend system — we're here to help. Reach out and let's make it happen.
+              Whether you require custom web architecture, mobile application engineering, or cloud system optimization — devsrecipe is ready to help.
             </p>
 
             <div className="contact-info-list">
               {data.contact.info.map((item, i) => (
                 <a key={i} href={item.href} target={item.href.startsWith("mailto") ? "_self" : "_blank"} rel="noreferrer" className="contact-info-item">
-                  <div className="contact-icon">{item.icon}</div>
+                  <div className="contact-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", color: "#ffffff" }}>
+                    <RenderIcon name={item.icon} size={18} />
+                  </div>
                   <div>
                     <div className="contact-label">{item.label}</div>
                     <div className="contact-value">{item.value}</div>
@@ -1519,18 +1162,32 @@ function ContactSection() {
               </div>
               <div className="form-group">
                 <label className="form-label">Subject</label>
-                <input name="subject" type="text" className="form-input" placeholder="Project Inquiry" />
+                <input name="subject" type="text" className="form-input" placeholder="Project Engineering Inquiry" />
               </div>
               <div className="form-group">
                 <label className="form-label">Message <span className="required">*</span></label>
-                <textarea name="message" required className="form-textarea" placeholder="Tell us about your project..." rows={5} />
+                <textarea name="message" required className="form-textarea" placeholder="Describe your software requirements and timeline..." rows={5} />
               </div>
               <button
                 type="submit"
                 disabled={status === "sending" || status === "sent"}
                 className={`form-submit ${status === "sent" ? "sent" : status === "error" ? "error" : ""}`}
+                style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}
               >
-                {status === "sending" ? "Sending..." : status === "sent" ? "✓ Message Sent!" : status === "error" ? "Failed — Try Again" : "Send Message →"}
+                {status === "sending" ? (
+                  "Sending..."
+                ) : status === "sent" ? (
+                  <>
+                    <Check size={16} /> Message Sent!
+                  </>
+                ) : status === "error" ? (
+                  "Failed — Try Again"
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <ArrowRight size={16} />
+                  </>
+                )}
               </button>
             </form>
           </div>
@@ -1543,19 +1200,19 @@ function ContactSection() {
 // ── Footer ────────────────────────────────────────────────────────────
 function Footer() {
   const socials = [
-    { icon: "🐙", href: data.profile.links.github },
-    { icon: "💼", href: data.profile.links.linkedin },
-    { icon: "💬", href: data.profile.links.whatsapp },
-    { icon: "📧", href: `mailto:${data.profile.email}` },
+    { icon: "Github", href: data.profile.links.github },
+    { icon: "Linkedin", href: data.profile.links.linkedin },
+    { icon: "Phone", href: data.profile.links.whatsapp },
+    { icon: "Mail", href: `mailto:${data.profile.email}` },
   ];
 
   return (
-    <footer className="footer">
+    <footer className="footer" style={{ borderTop: "1px solid var(--border-subtle)", background: "#000000" }}>
       <div className="footer-inner">
         <div className="footer-socials">
           {socials.map((s, i) => (
-            <a key={i} href={s.href} target="_blank" rel="noreferrer" className="footer-social">
-              {s.icon}
+            <a key={i} href={s.href} target="_blank" rel="noreferrer" className="footer-social" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", color: "#ffffff" }}>
+              <RenderIcon name={s.icon} size={18} />
             </a>
           ))}
         </div>
@@ -1591,7 +1248,6 @@ function useScrollReveal() {
 export default function Index() {
   useScrollReveal();
 
-  // Re-observe after filter changes
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -1618,7 +1274,6 @@ export default function Index() {
 
   return (
     <>
-      <DragonCursor />
       <Navbar />
       <main>
         <HeroSection />

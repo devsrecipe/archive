@@ -5,36 +5,36 @@
 
 /* ── CSS Custom Properties ─────────────────────────────────────────── */
 :root {
-  /* Colors */
-  --bg-primary: #07070d;
-  --bg-secondary: #0c0c16;
-  --bg-card: rgba(255, 255, 255, 0.025);
-  --bg-card-hover: rgba(255, 255, 255, 0.05);
-  --bg-glass: rgba(18, 18, 30, 0.65);
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-medium: rgba(255, 255, 255, 0.12);
-  --border-strong: rgba(167, 139, 250, 0.25);
+  /* Monochrome Colors */
+  --bg-primary: #050505;
+  --bg-secondary: #0a0a0c;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.07);
+  --bg-glass: rgba(10, 10, 12, 0.85);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.2);
+  --border-strong: rgba(255, 255, 255, 0.4);
 
-  /* Text */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-accent: #c084fc;
+  /* Typography Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --text-accent: #ffffff;
 
-  /* Accent Colors */
-  --accent-purple: #c084fc;
-  --accent-blue: #38bdf8;
-  --accent-cyan: #22d3ee;
-  --accent-pink: #f472b6;
-  --accent-green: #34d399;
-  --accent-orange: #fb923c;
-  --accent-yellow: #facc15;
+  /* Monochrome Accent Palette */
+  --accent-purple: #ffffff;
+  --accent-blue: #e4e4e7;
+  --accent-cyan: #a1a1aa;
+  --accent-pink: #d4d4d8;
+  --accent-green: #ffffff;
+  --accent-orange: #e4e4e7;
+  --accent-yellow: #a1a1aa;
 
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #c084fc 0%, #38bdf8 50%, #22d3ee 100%);
-  --gradient-secondary: linear-gradient(135deg, #f472b6 0%, #c084fc 100%);
-  --gradient-hero: linear-gradient(180deg, #07070d 0%, #0c0c16 50%, #07070d 100%);
-  --gradient-card: linear-gradient(145deg, rgba(192, 132, 252, 0.06) 0%, rgba(56, 189, 248, 0.03) 100%);
+  /* Monochrome Gradients */
+  --gradient-primary: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  --gradient-secondary: linear-gradient(135deg, #ffffff 0%, #71717a 100%);
+  --gradient-hero: linear-gradient(180deg, #000000 0%, #0a0a0c 50%, #000000 100%);
+  --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
 
   /* Typography */
   --font-body: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
@@ -50,10 +50,10 @@
   --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Shadows */
-  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 50px -10px rgba(192, 132, 252, 0.15);
-  --shadow-glow-strong: 0 0 70px -10px rgba(192, 132, 252, 0.25);
+  /* Shadows & Glows */
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 50px -10px rgba(255, 255, 255, 0.12);
+  --shadow-glow-strong: 0 0 70px -10px rgba(255, 255, 255, 0.22);
 }
 
 /* ── Reset & Base ──────────────────────────────────────────────────── */
@@ -128,11 +128,11 @@ ul, ol {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--accent-purple);
+  color: #ffffff;
   margin-bottom: 16px;
   padding: 6px 16px;
-  background: rgba(167, 139, 250, 0.08);
-  border: 1px solid rgba(167, 139, 250, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 100px;
 }
 
@@ -167,11 +167,11 @@ ul, ol {
 }
 
 .navbar.scrolled {
-  background: rgba(10, 10, 18, 0.85);
+  background: rgba(5, 5, 5, 0.85);
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
   border-bottom: 1px solid var(--border-subtle);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
 }
 
 .navbar-inner {
@@ -230,18 +230,18 @@ ul, ol {
 
 .navbar-cta {
   padding: 8px 20px !important;
-  background: var(--gradient-primary) !important;
+  background: #ffffff !important;
   color: #000 !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   border-radius: 8px !important;
   font-size: 13px !important;
   transition: var(--transition-fast) !important;
 }
 
 .navbar-cta:hover {
-  opacity: 0.9;
+  background: #e4e4e7 !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(167, 139, 250, 0.3);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25);
 }
 
 /* Mobile menu */
@@ -277,7 +277,7 @@ ul, ol {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(10, 10, 18, 0.97);
+  background: rgba(5, 5, 5, 0.97);
   backdrop-filter: blur(20px);
   z-index: 999;
   flex-direction: column;
@@ -322,7 +322,7 @@ ul, ol {
 .hero-glow-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(100px);
   pointer-events: none;
   z-index: 1;
 }
@@ -332,7 +332,7 @@ ul, ol {
   left: 20%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(192, 132, 252, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
 }
 
 .hero-glow-2 {
@@ -340,7 +340,7 @@ ul, ol {
   right: 10%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
 }
 
 .hero-content {
@@ -355,12 +355,12 @@ ul, ol {
   align-items: center;
   gap: 8px;
   padding: 8px 20px;
-  background: rgba(167, 139, 250, 0.08);
-  border: 1px solid rgba(167, 139, 250, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 100px;
   font-size: 14px;
   font-weight: 500;
-  color: var(--accent-purple);
+  color: #ffffff;
   margin-bottom: 32px;
   animation: fadeSlideUp 0.8s ease both;
 }
@@ -1837,328 +1837,5 @@ ul, ol {
     font-size: 12px;
     padding: 6px 14px;
   }
-
-  .contact-form {
-    padding: 24px 16px;
-  }
 }
 
-/* ── Decorative Elements ───────────────────────────────────────────── */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border-subtle), transparent);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Grid background pattern for sections */
-.pattern-bg {
-  position: relative;
-}
-
-.pattern-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.015) 1px, transparent 0);
-  background-size: 40px 40px;
-  pointer-events: none;
-}
-
-/* ── Dragon Mouse Follower ─────────────────────────────────────────── */
-@media (pointer: fine) {
-  body {
-    cursor: default;
-  }
-}
-
-/* ── Mythical Flying Dragon Mouse Follower ─────────────────────────── */
-@media (pointer: fine) {
-  body {
-    cursor: default;
-  }
-}
-
-.dragon-cursor-container {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-/* Dragon Head SVG */
-.dragon-head {
-  position: fixed;
-  top: -12px;
-  left: -20px;
-  width: 40px;
-  height: 24px;
-  pointer-events: none;
-  z-index: 10002;
-  filter: drop-shadow(0 0 12px rgba(34, 211, 238, 0.9));
-}
-
-.dragon-head-svg {
-  width: 100%;
-  height: 100%;
-}
-
-/* Dragon Feathered Wings */
-.dragon-wing {
-  position: fixed;
-  top: -60px;
-  left: -50px;
-  width: 100px;
-  height: 120px;
-  pointer-events: none;
-  z-index: 10001;
-  transform-origin: 0% 50%;
-  filter: drop-shadow(0 0 15px rgba(34, 211, 238, 0.6));
-}
-
-.left-wing {
-  transform: translateY(-30px);
-}
-
-.right-wing {
-  transform: translateY(-30px);
-}
-
-.dragon-wing-svg {
-  width: 100%;
-  height: 100%;
-}
-
-/* Dragon Body Segments */
-.dragon-segment {
-  position: fixed;
-  top: -12px;
-  left: -12px;
-  width: 24px;
-  height: 24px;
-  pointer-events: none;
-  z-index: 10000;
-  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.5));
-}
-
-.dragon-segment-svg {
-  width: 100%;
-  height: 100%;
-}
-
-/* Hover State Fire Ignition */
-.dragon-cursor-container.hovered .dragon-head {
-  filter: drop-shadow(0 0 20px rgba(244, 114, 182, 0.9)) drop-shadow(0 0 35px rgba(251, 146, 60, 0.8));
-}
-
-.dragon-cursor-container.hovered .dragon-segment {
-  filter: drop-shadow(0 0 12px rgba(251, 146, 60, 0.7));
-}
-
-/* ── Custom Right-Click Context Menu ── */
-.custom-context-menu {
-  position: fixed;
-  z-index: 99999;
-  background: rgba(15, 23, 42, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
-  padding: 10px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(34, 211, 238, 0.15);
-  width: 240px;
-  animation: contextMenuPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes contextMenuPop {
-  0% {
-    opacity: 0;
-    transform: scale(0.92) translateY(-8px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.context-menu-header {
-  padding: 6px 10px 8px 10px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #94a3b8;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 6px;
-}
-
-.context-menu-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 10px 12px;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  color: #cbd5e1;
-  font-size: 0.88rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: left;
-}
-
-.context-menu-item:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.1);
-  transform: translateX(3px);
-}
-
-.context-menu-item.active {
-  background: linear-gradient(135deg, rgba(34, 211, 238, 0.18), rgba(168, 85, 247, 0.18));
-  color: #38bdf8;
-  border-color: rgba(56, 189, 248, 0.4);
-  font-weight: 600;
-}
-
-.context-menu-icon {
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-}
-
-.context-menu-check {
-  margin-left: auto;
-  font-size: 0.8rem;
-  color: #38bdf8;
-}
-
-/* ── Cursor Click Ripple & Particle Effects ── */
-.cursor-click-ripple {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%);
-  animation: clickRippleExpand 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-}
-
-.cursor-click-ripple.theme-dragon {
-  border: 2px solid rgba(34, 211, 238, 0.8);
-  box-shadow: 0 0 20px rgba(34, 211, 238, 0.6), inset 0 0 15px rgba(192, 132, 252, 0.4);
-}
-
-.cursor-click-ripple.theme-comet {
-  border: 2px solid rgba(56, 189, 248, 0.9);
-  box-shadow: 0 0 25px rgba(56, 189, 248, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.6);
-}
-
-.cursor-click-ripple.theme-phoenix {
-  border: 2px solid rgba(251, 146, 60, 0.9);
-  box-shadow: 0 0 25px rgba(251, 146, 60, 0.8), inset 0 0 15px rgba(244, 63, 94, 0.6);
-}
-
-@keyframes clickRippleExpand {
-  0% {
-    width: 0px;
-    height: 0px;
-    opacity: 1;
-  }
-  100% {
-    width: 90px;
-    height: 90px;
-    opacity: 0;
-  }
-}
-
-.cursor-click-particle {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  animation: particleBurst 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes particleBurst {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.1);
-  }
-}
-
-/* ── Right-Click Pulse Wave ── */
-.right-click-pulse {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99997;
-  transform: translate(-50%, -50%);
-  border: 2px dashed rgba(192, 132, 252, 0.9);
-  box-shadow: 0 0 30px rgba(192, 132, 252, 0.7), inset 0 0 20px rgba(34, 211, 238, 0.5);
-  animation: rightClickPulseAnim 0.75s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
-}
-
-@keyframes rightClickPulseAnim {
-  0% {
-    width: 0px;
-    height: 0px;
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    width: 140px;
-    height: 140px;
-    opacity: 0;
-    transform: translate(-50%, -50%) rotate(90deg);
-  }
-}
-
-/* ── Floating Keypress Letter Pop Effect ── */
-.keyboard-letter-pop {
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  font-family: 'Outfit', system-ui, sans-serif;
-  font-weight: 800;
-  font-size: 2.2rem;
-  line-height: 1;
-  padding: 8px 16px;
-  border-radius: 16px;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background-clip: padding-box;
-  color: #38bdf8;
-  background-image: linear-gradient(135deg, #38bdf8, #c084fc, #f43f5e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.6);
-  transform: translate(-50%, -50%);
-  animation: keyLetterFloat 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes keyLetterFloat {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.3) rotate(var(--rot));
-  }
-  20% {
-    opacity: 1;
-    transform: translate(-50%, -80%) scale(1.3) rotate(var(--rot));
-  }
-  100% {
-    opacity: 0;
-    transform: translate(calc(-50% + var(--driftX)), -220%) scale(0.8) rotate(calc(var(--rot) * 2));
-  }
-}
