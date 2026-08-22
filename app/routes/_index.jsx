@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import gsap from "gsap";
-import ThreeHeroScene from "../components/ThreeHeroScene";
+import ThreeGlobalBackground from "../components/ThreeGlobalBackground";
 import {
   Globe,
   Smartphone,
@@ -341,9 +341,6 @@ function HeroSection() {
 
   return (
     <section id="hero" className="hero section" ref={heroRef} style={{ position: "relative" }}>
-      {/* Interactive Three.js 3D Monolith & Particle Wave Visualizer */}
-      <ThreeHeroScene />
-
       {/* Subtle Specular Glow Cones */}
       <div className="hero-glow-blob hero-glow-1" />
       <div className="hero-glow-blob hero-glow-2" />
@@ -1366,6 +1363,9 @@ export default function Index() {
 
   return (
     <>
+      {/* Full-Website Interactive Three.js 3D WebGL Background (Mouse & Scroll Reactive) */}
+      <ThreeGlobalBackground />
+
       {/* Scroll-Linked Framer Motion Progress Bar */}
       <motion.div className="scroll-progress-bar" style={{ scaleX }} />
       <Navbar />
