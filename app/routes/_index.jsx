@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import gsap from "gsap";
+import ThreeHeroScene from "../components/ThreeHeroScene";
 import {
   Globe,
   Smartphone,
@@ -27,6 +28,9 @@ import {
   Sparkles,
   Terminal,
   ShieldCheck,
+  Layers,
+  Cpu,
+  Activity,
 } from "lucide-react";
 import data from "../data/portfolio.json";
 
@@ -72,6 +76,9 @@ const iconRegistry = {
   Sparkles,
   Terminal,
   ShieldCheck,
+  Layers,
+  Cpu,
+  Activity,
 };
 
 function RenderIcon({ name, size = 20, className = "" }) {
@@ -81,22 +88,22 @@ function RenderIcon({ name, size = 20, className = "" }) {
 
 // ── Motion Animation Variants ─────────────────────────────────────────
 const fadeInUp = {
-  hidden: { opacity: 0, y: 40, rotateX: -10 },
+  hidden: { opacity: 0, y: 35, rotateX: -6 },
   visible: {
     opacity: 1,
     y: 0,
     rotateX: 0,
-    transition: { type: "spring", stiffness: 100, damping: 14, mass: 0.8 },
+    transition: { type: "spring", stiffness: 100, damping: 15, mass: 0.8 },
   },
 };
 
 const scaleUpSkew = {
-  hidden: { opacity: 0, scale: 0.9, rotateY: 10 },
+  hidden: { opacity: 0, scale: 0.92, y: 25 },
   visible: {
     opacity: 1,
     scale: 1,
-    rotateY: 0,
-    transition: { type: "spring", stiffness: 120, damping: 12 },
+    y: 0,
+    transition: { type: "spring", stiffness: 110, damping: 14 },
   },
 };
 
@@ -105,15 +112,16 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.05,
+      staggerChildren: 0.08,
+      delayChildren: 0.04,
     },
   },
 };
 
-// ── Tilt Card ────────────────────────────────────────────────────────
+// ── Advanced 3D Tilt Card with Dynamic Cursor Spotlight Reflection ────
 function TiltCard({ children, className = "", style = {}, ...props }) {
   const cardRef = useRef(null);
+  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -125,17 +133,20 @@ function TiltCard({ children, className = "", style = {}, ...props }) {
     const rotateX = ((y - centerY) / centerY) * -8;
     const rotateY = ((x - centerX) / centerX) * 8;
 
+    setGlare({ x, y, opacity: 1 });
+
     gsap.to(cardRef.current, {
       rotateX,
       rotateY,
-      duration: 0.4,
+      duration: 0.35,
       ease: "power2.out",
-      transformPerspective: 1000,
+      transformPerspective: 1200,
     });
   };
 
   const handleMouseLeave = () => {
     if (!cardRef.current) return;
+    setGlare((prev) => ({ ...prev, opacity: 0 }));
     gsap.to(cardRef.current, {
       rotateX: 0,
       rotateY: 0,
@@ -148,11 +159,24 @@ function TiltCard({ children, className = "", style = {}, ...props }) {
     <motion.div
       ref={cardRef}
       className={className}
-      style={{ transformStyle: "preserve-3d", ...style }}
+      style={{ transformStyle: "preserve-3d", position: "relative", ...style }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       {...props}
     >
+      {/* Specular Glare Reflection */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: "inherit",
+          pointerEvents: "none",
+          zIndex: 4,
+          opacity: glare.opacity,
+          transition: "opacity 0.25s ease",
+          background: `radial-gradient(circle 260px at ${glare.x}px ${glare.y}px, rgba(255, 255, 255, 0.08) 0%, transparent 70%)`,
+        }}
+      />
       {children}
     </motion.div>
   );
@@ -290,39 +314,78 @@ function HeroSection() {
   const typed = useTypewriter(data.hero.typewriterLines);
   const heroRef = useRef(null);
 
-  useEffect(() => {
-    if (heroRef.current) {
-      gsap.fromTo(
-        heroRef.current.querySelectorAll(".hero-glow-blob"),
-        { scale: 0.8, opacity: 0.3 },
-        {
-          scale: 1.2,
-          opacity: 0.6,
-          duration: 4,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        }
-      );
-    }
-  }, []);
+  // Floating badge animation variants
+  const floatBadge1 = {
+    initial: { y: 0 },
+    animate: {
+      y: [-8, 8, -8],
+      transition: {
+        duration: 5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  const floatBadge2 = {
+    initial: { y: 0 },
+    animate: {
+      y: [8, -8, 8],
+      transition: {
+        duration: 6,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  };
 
   return (
-    <section id="hero" className="hero section" ref={heroRef}>
+    <section id="hero" className="hero section" ref={heroRef} style={{ position: "relative" }}>
+      {/* Interactive Three.js 3D Monolith & Particle Wave Visualizer */}
+      <ThreeHeroScene />
+
+      {/* Subtle Specular Glow Cones */}
       <div className="hero-glow-blob hero-glow-1" />
       <div className="hero-glow-blob hero-glow-2" />
 
-      <div className="container">
+      <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <motion.div
           className="hero-content"
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
         >
-          <motion.div variants={fadeInUp} className="hero-badge">
-            <span className="dot" />
-            {data.hero.greeting}
-          </motion.div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
+            <motion.div variants={fadeInUp} className="hero-badge">
+              <span className="dot" />
+              {data.hero.greeting}
+            </motion.div>
+
+            {/* Floating Luxury Architecture Badges (Framer Motion) */}
+            <motion.div
+              variants={floatBadge1}
+              initial="initial"
+              animate="animate"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "6px 16px",
+                background: "rgba(255, 255, 255, 0.03)",
+                border: "1px solid rgba(255, 255, 255, 0.12)",
+                borderTop: "1px solid rgba(255, 255, 255, 0.3)",
+                borderRadius: 9999,
+                fontSize: 12,
+                color: "#d4d4d8",
+                backdropFilter: "blur(12px)",
+                boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
+                marginBottom: 20,
+              }}
+            >
+              <Cpu size={14} style={{ color: "#ffffff" }} />
+              <span>Three.js Accelerated Core</span>
+            </motion.div>
+          </div>
 
           <motion.h1 variants={fadeInUp} className="hero-title">
             Engineering Digital Products <br />
@@ -343,7 +406,7 @@ function HeroSection() {
 
           <motion.div variants={fadeInUp} className="hero-ctas">
             <motion.a
-              whileHover={{ scale: 1.04 }}
+              whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
               href="#contact"
               className="btn-primary"
@@ -353,7 +416,7 @@ function HeroSection() {
               <ArrowRight size={16} />
             </motion.a>
             <motion.a
-              whileHover={{ scale: 1.04 }}
+              whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
               href="#projects"
               className="btn-secondary"
@@ -362,6 +425,28 @@ function HeroSection() {
               <Folder size={16} />
               <span>{data.hero.ctaSecondary}</span>
             </motion.a>
+
+            <motion.div
+              variants={floatBadge2}
+              initial="initial"
+              animate="animate"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "8px 16px",
+                background: "rgba(255, 255, 255, 0.025)",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
+                borderRadius: 12,
+                fontSize: 12,
+                color: "#a1a1aa",
+                backdropFilter: "blur(8px)",
+                marginLeft: "auto",
+              }}
+            >
+              <Activity size={14} style={{ color: "#ffffff" }} />
+              <span>99.9% Production SLA</span>
+            </motion.div>
           </motion.div>
 
           <motion.div variants={fadeInUp} className="hero-stats">
@@ -369,7 +454,8 @@ function HeroSection() {
               <motion.div
                 key={stat.label}
                 className="hero-stat"
-                whileHover={{ y: -4, backgroundColor: "rgba(255, 255, 255, 0.06)" }}
+                whileHover={{ y: -3, backgroundColor: "rgba(255, 255, 255, 0.06)" }}
+                transition={{ type: "spring", stiffness: 200, damping: 15 }}
               >
                 <div className="hero-stat-value">{stat.value}</div>
                 <div className="hero-stat-label">{stat.label}</div>
@@ -1247,6 +1333,12 @@ function useScrollReveal() {
 // ── Main Page ─────────────────────────────────────────────────────────
 export default function Index() {
   useScrollReveal();
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -1274,6 +1366,8 @@ export default function Index() {
 
   return (
     <>
+      {/* Scroll-Linked Framer Motion Progress Bar */}
+      <motion.div className="scroll-progress-bar" style={{ scaleX }} />
       <Navbar />
       <main>
         <HeroSection />
@@ -1296,3 +1390,4 @@ export default function Index() {
     </>
   );
 }
+
