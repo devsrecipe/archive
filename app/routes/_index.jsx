@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import gsap from "gsap";
 import ThreeGlobalBackground from "../components/ThreeGlobalBackground";
+import BrandPreloader from "../components/BrandPreloader";
 import {
   Globe,
   Smartphone,
@@ -1368,6 +1369,9 @@ export default function Index() {
 
   return (
     <>
+      {/* 3-Second Cinematic Brand Logo Preloader */}
+      <BrandPreloader duration={3000} />
+
       {/* Full-Website Interactive Three.js 3D WebGL Background (Mouse & Scroll Reactive) */}
       <ThreeGlobalBackground />
 

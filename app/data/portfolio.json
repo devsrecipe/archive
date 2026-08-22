@@ -8,7 +8,7 @@
     "location": "Dhaka, Bangladesh",
     "email": "contact@devsrecipe.com",
     "phone": "+88019964644479",
-    "bio": "devsrecipe — cook your idea with devsrecipe. We transform complex concepts into production-grade web platforms, cross-platform mobile apps, and scalable backend infrastructure engineered for reliability, security, and exceptional performance.",
+    "bio": "devsrecipe  cook your idea with devsrecipe. We transform complex concepts into production-grade web platforms, cross-platform mobile apps, and scalable backend infrastructure engineered for reliability, security, and exceptional performance.",
     "bio2": "Our engineering team emphasizes clean modular code, performance optimization, and refined user experience. From high-throughput APIs to real-time e-commerce ecosystems, we build digital solutions designed for continuous growth.",
     "links": {
       "github": "https://github.com/mansuramira",
@@ -20,11 +20,11 @@
   "hero": {
     "greeting": "Available for New Projects & Product Builds",
     "headline": "Cook Your Idea with devsrecipe",
-    "subheadline": "You bring the vision — we prepare all the ingredients to build your complete website, mobile app, or software platform from scratch. Zero tech headaches, high-performance software, and seamless cloud launch.",
+    "subheadline": "You bring the vision we prepare all the ingredients to build your complete website, mobile app, or software platform from scratch. Zero tech headaches, high performance software, and seamless cloud launch.",
     "typewriterLines": [
       "Got a startup idea? We build your complete web & mobile app",
-      "From a sketch to a live, money-making product for your customers",
-      "Fast, beautiful, and secure — built for continuous business growth",
+      "From a sketch to a live, money making product for your customers",
+      "Fast, beautiful, and secure  built for continuous business growth",
       "Zero tech stress: We handle design, coding, databases & cloud launch"
     ],
     "ctaPrimary": "Cook Your Idea",
@@ -269,32 +269,55 @@
         {
           "name": "React.js",
           "level": "Expertise",
-          "tags": ["Hooks", "Redux", "Vite"]
+          "tags": [
+            "Hooks",
+            "Redux",
+            "Vite"
+          ]
         },
         {
           "name": "Next.js",
           "level": "Expertise",
-          "tags": ["App Router", "SSR", "SEO"]
+          "tags": [
+            "App Router",
+            "SSR",
+            "SEO"
+          ]
         },
         {
           "name": "JavaScript (ES6+)",
           "level": "Expertise",
-          "tags": ["Async/Await", "DOM", "ESNext"]
+          "tags": [
+            "Async/Await",
+            "DOM",
+            "ESNext"
+          ]
         },
         {
           "name": "TypeScript",
           "level": "Expertise",
-          "tags": ["Types", "Interfaces", "Generics"]
+          "tags": [
+            "Types",
+            "Interfaces",
+            "Generics"
+          ]
         },
         {
           "name": "React Native",
           "level": "Expertise",
-          "tags": ["CLI", "Mobile Apps", "iOS & Android"]
+          "tags": [
+            "CLI",
+            "Mobile Apps",
+            "iOS & Android"
+          ]
         },
         {
           "name": "Redux Toolkit",
           "level": "Expertise",
-          "tags": ["RTK Query", "State Management"]
+          "tags": [
+            "RTK Query",
+            "State Management"
+          ]
         }
       ]
     },
@@ -305,22 +328,38 @@
         {
           "name": "Node.js",
           "level": "Expertise",
-          "tags": ["Event Loop", "Streams", "Modular Design"]
+          "tags": [
+            "Event Loop",
+            "Streams",
+            "Modular Design"
+          ]
         },
         {
           "name": "Express.js",
           "level": "Expertise",
-          "tags": ["REST APIs", "Middleware", "Auth Protocols"]
+          "tags": [
+            "REST APIs",
+            "Middleware",
+            "Auth Protocols"
+          ]
         },
         {
           "name": "Socket.io",
           "level": "Proficient",
-          "tags": ["WebSockets", "Real-Time Sync", "Broadcasting"]
+          "tags": [
+            "WebSockets",
+            "Real-Time Sync",
+            "Broadcasting"
+          ]
         },
         {
           "name": "Prisma ORM",
           "level": "Proficient",
-          "tags": ["Migrations", "Schema Design", "Type-Safety"]
+          "tags": [
+            "Migrations",
+            "Schema Design",
+            "Type-Safety"
+          ]
         }
       ]
     },
@@ -331,27 +370,46 @@
         {
           "name": "MongoDB",
           "level": "Expertise",
-          "tags": ["Mongoose", "Aggregation Framework", "Atlas"]
+          "tags": [
+            "Mongoose",
+            "Aggregation Framework",
+            "Atlas"
+          ]
         },
         {
           "name": "PostgreSQL",
           "level": "Proficient",
-          "tags": ["Relational Queries", "Indexing", "ACID Compliant"]
+          "tags": [
+            "Relational Queries",
+            "Indexing",
+            "ACID Compliant"
+          ]
         },
         {
           "name": "AWS",
           "level": "Proficient",
-          "tags": ["EC2", "S3", "CloudFront"]
+          "tags": [
+            "EC2",
+            "S3",
+            "CloudFront"
+          ]
         },
         {
           "name": "Docker",
           "level": "Proficient",
-          "tags": ["Containerization", "Compose", "Deployment"]
+          "tags": [
+            "Containerization",
+            "Compose",
+            "Deployment"
+          ]
         },
         {
           "name": "CI/CD Pipelines",
           "level": "Proficient",
-          "tags": ["GitHub Actions", "Automated Testing"]
+          "tags": [
+            "GitHub Actions",
+            "Automated Testing"
+          ]
         }
       ]
     },
@@ -362,22 +420,35 @@
         {
           "name": "C / C++",
           "level": "Proficient",
-          "tags": ["Memory Allocation", "Pointers", "OOP"]
+          "tags": [
+            "Memory Allocation",
+            "Pointers",
+            "OOP"
+          ]
         },
         {
           "name": "Data Structures & Algorithms",
           "level": "Proficient",
-          "tags": ["Algorithmic Complexity", "Optimization"]
+          "tags": [
+            "Algorithmic Complexity",
+            "Optimization"
+          ]
         },
         {
           "name": "Object-Oriented Design",
           "level": "Proficient",
-          "tags": ["Design Patterns", "Clean Code Architecture"]
+          "tags": [
+            "Design Patterns",
+            "Clean Code Architecture"
+          ]
         },
         {
           "name": "MySQL",
           "level": "Proficient",
-          "tags": ["Relational Schemas", "Complex Joins"]
+          "tags": [
+            "Relational Schemas",
+            "Complex Joins"
+          ]
         }
       ]
     }
