@@ -914,7 +914,7 @@ function SkillsSection() {
   );
 }
 
-// ── Experience Section ────────────────────────────────────────────────
+// ── Experience & Company Standards Section ────────────────────────────
 function ExperienceSection() {
   return (
     <section id="experience" className="section">
@@ -927,16 +927,17 @@ function ExperienceSection() {
           className="section-header"
         >
           <span className="section-label">
-            <Briefcase size={14} /> Career & Practice
+            <Briefcase size={14} /> Our Track Record
           </span>
-          <h2 className="section-title">Engineering Experience</h2>
+          <h2 className="section-title">Company Milestones & Growth</h2>
           <p className="section-subtitle">
-            Our timeline of leadership, architecture design, and production code delivery.
+            Our studio timeline of technical execution, global client delivery, and cloud platform scaling.
           </p>
         </motion.div>
 
+        {/* Company Evolution Timeline */}
         <div className="experience-timeline">
-          {data.experience.map((exp, i) => (
+          {(data.companyMilestones || []).map((exp, i) => (
             <motion.div
               key={i}
               initial="hidden"
@@ -958,17 +959,69 @@ function ExperienceSection() {
           ))}
         </div>
 
-        {/* Achievements */}
-        <div style={{ width: "100%", maxWidth: "100%", margin: "48px 0 0" }}>
-          <motion.h3
+        {/* Enterprise Standards & Security Protocols */}
+        <div style={{ width: "100%", maxWidth: "100%", margin: "56px 0 0" }}>
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 700, color: "var(--text-primary)", marginBottom: 24, textAlign: "center" }}
+            style={{ textAlign: "center", marginBottom: 32 }}
           >
-            Certifications & Technical Credentials
-          </motion.h3>
+            <h3 style={{ fontFamily: "var(--font-heading)", fontSize: 24, fontWeight: 700, color: "var(--text-primary)", marginBottom: 8 }}>
+              Engineering Standards & Security Protocols
+            </h3>
+            <p style={{ fontSize: 14, color: "var(--text-muted)", maxWidth: 640, margin: "0 auto" }}>
+              Enterprise-grade reliability, data protection, and continuous integration baked into every software release.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: 20 }}
+          >
+            {(data.engineeringStandards || []).map((std, i) => (
+              <TiltCard
+                key={i}
+                variants={fadeInUp}
+                className="service-card"
+                style={{ padding: "26px 22px" }}
+              >
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
+                  <div style={{ color: "#ffffff" }}>
+                    <RenderIcon name={std.icon} size={22} />
+                  </div>
+                  <span style={{ fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 700 }}>
+                    {std.standard}
+                  </span>
+                </div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: "var(--text-primary)", marginBottom: 8 }}>{std.title}</div>
+                <div style={{ fontSize: 13, color: "var(--text-muted)", lineHeight: 1.6 }}>{std.description}</div>
+              </TiltCard>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Client Engagement Models */}
+        <div style={{ width: "100%", maxWidth: "100%", margin: "64px 0 0" }}>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            style={{ textAlign: "center", marginBottom: 32 }}
+          >
+            <h3 style={{ fontFamily: "var(--font-heading)", fontSize: 24, fontWeight: 700, color: "var(--text-primary)", marginBottom: 8 }}>
+              Client Engagement & Collaboration Models
+            </h3>
+            <p style={{ fontSize: 14, color: "var(--text-muted)", maxWidth: 640, margin: "0 auto" }}>
+              Flexible partnership structures tailored to your company's product stage, roadmap, and delivery requirements.
+            </p>
+          </motion.div>
+
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -976,20 +1029,32 @@ function ExperienceSection() {
             variants={staggerContainer}
             style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}
           >
-            {data.achievements.map((ach, i) => (
-              <motion.div
+            {(data.engagementModels || []).map((model, i) => (
+              <TiltCard
                 key={i}
                 variants={fadeInUp}
-                whileHover={{ y: -4 }}
-                style={{ padding: 24, background: "var(--bg-card)", border: "1px solid var(--border-subtle)", borderRadius: 16, transition: "var(--transition-fast)" }}
+                className="service-card"
+                style={{ padding: "30px 24px" }}
               >
-                <div style={{ marginBottom: 12, color: "#ffffff" }}>
-                  <RenderIcon name={ach.icon} size={26} />
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
+                  <div style={{ color: "#ffffff" }}>
+                    <RenderIcon name={model.icon} size={24} />
+                  </div>
+                  <span style={{ fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 700 }}>
+                    {model.subtitle}
+                  </span>
                 </div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: "var(--text-primary)", marginBottom: 4 }}>{ach.title}</div>
-                <div style={{ fontSize: 13, color: "#a1a1aa", marginBottom: 6 }}>{ach.event}</div>
-                <div style={{ fontSize: 14, color: "var(--text-muted)", lineHeight: 1.6 }}>{ach.description}</div>
-              </motion.div>
+                <h4 style={{ fontSize: 18, fontWeight: 700, color: "var(--text-primary)", marginBottom: 8 }}>{model.title}</h4>
+                <p style={{ fontSize: 13, color: "var(--text-muted)", lineHeight: 1.6, marginBottom: 16 }}>{model.description}</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8, borderTop: "1px solid var(--border-subtle)", paddingTop: 14 }}>
+                  {model.features.map((feat) => (
+                    <div key={feat} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: "#d4d4d8" }}>
+                      <Check size={14} style={{ color: "#ffffff", flexShrink: 0 }} />
+                      <span>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </TiltCard>
             ))}
           </motion.div>
         </div>
@@ -1057,25 +1122,23 @@ function AboutSection() {
               variants={staggerContainer}
               className="education-cards"
             >
-              <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 700, color: "var(--text-primary)", marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
-                <GraduationCap size={18} /> Education & Academic Background
+              <h3 style={{ fontFamily: "var(--font-heading)", fontSize: 18, fontWeight: 700, color: "var(--text-primary)", marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
+                <Zap size={18} /> Studio Core Principles
               </h3>
-              {data.education.map((edu) => (
+              {(data.about.principles || []).map((item, i) => (
                 <motion.div
-                  key={edu.id}
+                  key={i}
                   variants={fadeInUp}
                   whileHover={{ x: 4 }}
                   className="education-card"
                 >
                   <div className="education-top">
-                    <span className="education-uni" style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                      <RenderIcon name={edu.icon} size={16} />
-                      {edu.university}
+                    <span className="education-uni" style={{ display: "flex", alignItems: "center", gap: 6, fontWeight: 700 }}>
+                      <RenderIcon name={item.icon} size={16} />
+                      {item.title}
                     </span>
-                    <span className="education-period">{edu.period}</span>
                   </div>
-                  <div className="education-degree">{edu.degree}</div>
-                  {edu.gpa && <div className="education-gpa">{edu.gpa}</div>}
+                  <div className="education-degree" style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 4 }}>{item.desc}</div>
                 </motion.div>
               ))}
             </motion.div>

@@ -6,14 +6,14 @@
     "role": "Full-Stack Software Engineering Studio",
     "tagline": "Cook your idea with devsrecipe into high-performance, scalable platforms.",
     "location": "Dhaka, Bangladesh",
-    "email": "contact@devsrecipe.com",
+    "email": "devsrecipe@gmail.com",
     "phone": "+88019964644479",
     "bio": "devsrecipe  cook your idea with devsrecipe. We transform complex concepts into production-grade web platforms, cross-platform mobile apps, and scalable backend infrastructure engineered for reliability, security, and exceptional performance.",
     "bio2": "Our engineering team emphasizes clean modular code, performance optimization, and refined user experience. From high-throughput APIs to real-time e-commerce ecosystems, we build digital solutions designed for continuous growth.",
     "links": {
-      "github": "https://github.com/mansuramira",
-      "linkedin": "https://www.linkedin.com/in/mansura-mira-bb5504426/",
-      "website": "https://devsrecipe.com/",
+      "github": "https://github.com/devsrecipe",
+      "linkedin": "https://www.linkedin.com/in/devsrecipe/",
+      "website": "https://devsrecipe.tech/",
       "whatsapp": "https://wa.me/88019964644479"
     }
   },
@@ -453,14 +453,14 @@
       ]
     }
   ],
-  "experience": [
+  "companyMilestones": [
     {
-      "date": "May 2024 - Present",
+      "date": "2024 - Present",
       "current": true,
-      "role": "Tech Lead & Solutions Architect",
+      "role": "Global Product Engineering & Cloud Scaling",
       "company": "devsrecipe Studio",
-      "location": "Remote",
-      "description": "Lead a dedicated engineering team delivering production software for international clients. Architect full-stack web applications, cross-platform mobile apps, and cloud backend services. Direct technical execution from specification and API design through AWS cloud deployment and continuous integration.",
+      "location": "Global / Remote",
+      "description": "Architecting and shipping high-throughput web applications, cross-platform mobile products, and real-time enterprise APIs for international startups and businesses. Providing end-to-end technical execution from system architecture through AWS cloud deployment and automated CI/CD.",
       "tags": [
         "System Architecture",
         "React.js",
@@ -474,40 +474,98 @@
         "Socket.io",
         "Docker"
       ]
-    }
-  ],
-  "education": [
-    {
-      "id": 1,
-      "university": "Uttara University",
-      "degree": "B.Sc. in Computer Science & Engineering (CSE)",
-      "gpa": "",
-      "period": "2025 - Present",
-      "location": "Dhaka, Bangladesh",
-      "icon": "GraduationCap"
     },
     {
-      "id": 2,
-      "university": "Pabna Polytechnic Institute",
-      "degree": "Diploma in Computer Engineering",
-      "gpa": "GPA 3.59 / 4.00",
-      "period": "2018 - 2022",
-      "location": "Pabna, Bangladesh",
-      "icon": "GraduationCap"
+      "date": "2023 - 2024",
+      "current": false,
+      "role": "Cross-Platform Mobile & E-Commerce Expansion",
+      "company": "devsrecipe Studio",
+      "location": "Global / Remote",
+      "description": "Expanded studio capabilities to native iOS and Android application engineering, full-featured multi-currency e-commerce systems, secure payment gateway integrations, and real-time WebSocket communication infrastructure.",
+      "tags": [
+        "React Native",
+        "iOS & Android",
+        "REST APIs",
+        "Payment Gateways",
+        "PostgreSQL",
+        "Redis Caching"
+      ]
+    },
+    {
+      "date": "2022 - 2023",
+      "current": false,
+      "role": "Studio Inception & Core Frameworks",
+      "company": "devsrecipe Studio",
+      "location": "Dhaka & Remote",
+      "description": "Established devsrecipe as a digital engineering studio focused on performance, modular architecture, and modern full-stack development for high-growth digital businesses.",
+      "tags": [
+        "Full-Stack Engineering",
+        "Modern JavaScript",
+        "Next.js",
+        "Database Architecture",
+        "UI/UX Design"
+      ]
     }
   ],
-  "achievements": [
+  "engagementModels": [
     {
-      "icon": "Award",
-      "title": "Computer Science Fundamentals Certification",
-      "event": "Phitron (2025)",
-      "description": "Mastery in core data structures, algorithms, and modular software architecture."
+      "icon": "Briefcase",
+      "title": "Dedicated Engineering Squad",
+      "subtitle": "Full-Time Embedded Team",
+      "description": "A dedicated cross-functional squad of senior full-stack engineers and UI architects integrated directly into your product sprints.",
+      "features": [
+        "Direct Slack/Teams Sync",
+        "Agile 2-Week Sprints",
+        "Daily Standups & Git Commits"
+      ]
+    },
+    {
+      "icon": "Code2",
+      "title": "End-to-End Product Build",
+      "subtitle": "Turnkey Fixed Scope",
+      "description": "From product blueprint and UI/UX design to full-stack code, payment integrations, and live cloud deployment on fixed milestones.",
+      "features": [
+        "Guaranteed Deliverables",
+        "Fixed Timeline & Budget",
+        "Full Intellectual Property Ownership"
+      ]
+    },
+    {
+      "icon": "Cloud",
+      "title": "Cloud & DevOps Retainer",
+      "subtitle": "24/7 Scaling & Maintenance",
+      "description": "Continuous cloud optimization, database scaling, automated CI/CD pipelines, security audits, and 99.9% uptime SLA monitoring.",
+      "features": [
+        "AWS Infrastructure Tuning",
+        "Security & Vulnerability Patches",
+        "Performance Optimization"
+      ]
+    }
+  ],
+  "engineeringStandards": [
+    {
+      "icon": "Zap",
+      "title": "Enterprise Security & Protection",
+      "standard": "OWASP Top 10 Hardened",
+      "description": "End-to-end data encryption, strict RBAC authorization, secure JWT sessions, and sanitization protocols across every API endpoint."
+    },
+    {
+      "icon": "Cloud",
+      "title": "99.9% Cloud Uptime & High Availability",
+      "standard": "AWS Resilient Infrastructure",
+      "description": "Containerized Docker microservices, automated load balancing, fault-tolerant failovers, and low-latency worldwide CDN distribution."
     },
     {
       "icon": "Award",
-      "title": "Complete Full-Stack Web Development Track",
-      "event": "Programming Hero (2023)",
-      "description": "Comprehensive specialization in modern full-stack web applications and database integration."
+      "title": "Agile Sprint & Continuous Delivery",
+      "standard": "Automated CI/CD Pipelines",
+      "description": "Automated regression testing, GitHub Actions CI/CD workflows, zero-downtime rolling updates, and transparent code commits."
+    },
+    {
+      "icon": "Code2",
+      "title": "Clean Modular Architecture",
+      "standard": "Zero Technical Debt Policy",
+      "description": "Strict type-safety, documented REST APIs, scalable database normalization, and maintainable modular components built to scale."
     }
   ],
   "testimonials": [
@@ -538,18 +596,35 @@
   ],
   "about": {
     "headline": "About devsrecipe",
-    "subtitle": "Architecting software solutions with precision and technical craftsmanship",
-    "description": "devsrecipe is a digital engineering studio bringing together skilled full-stack developers and UI architects. We collaborate with companies and founders worldwide to create enterprise web applications, mobile platforms, and robust cloud services.",
-    "description2": "We treat code quality, scalability, and UX as foundational pillars. From early technical discovery to automated CI/CD deployment, we deliver software built to scale efficiently under real-world workloads.",
+    "subtitle": "Engineering modern digital products with technical precision and craftsmanship",
+    "description": "devsrecipe is a digital product engineering studio. We partner with founders, startups, and companies worldwide to architect and build high-performance web platforms, cross-platform mobile apps, and scalable cloud systems.",
+    "description2": "We treat code quality, scalability, and intuitive user experiences as foundational pillars. From early technical discovery through automated CI/CD deployment, we deliver software built to scale efficiently under real-world workloads.",
     "teamHighlights": [
-      "Cross-functional team of senior full-stack engineers & UI designers",
-      "Proven track record of delivering production-grade applications",
+      "Cross-functional team of senior full-stack engineers & UI architects",
+      "Proven track record of delivering production-grade digital applications",
       "Published cross-platform mobile apps on App Store & Google Play",
       "Deep expertise in real-time WebSockets, e-commerce & SaaS architectures",
       "End-to-end product engineering: Design → Code → Cloud Deployment → Support",
       "Production AWS cloud infrastructure and automated DevOps workflows"
     ],
-    "mission": "Our mission is to craft reliable, high-impact digital products through disciplined engineering, modern frameworks, and transparent technical execution."
+    "principles": [
+      {
+        "icon": "Zap",
+        "title": "High-Performance Execution",
+        "desc": "Sub-second API responses, optimized bundle sizes, and blazing-fast UI interactions."
+      },
+      {
+        "icon": "Code2",
+        "title": "Clean Modular Architecture",
+        "desc": "Zero technical debt policy with strict type safety, modular components, and documented APIs."
+      },
+      {
+        "icon": "Cloud",
+        "title": "Elastic Cloud Scalability",
+        "desc": "Engineered on AWS microservices with auto-scaling to handle continuous business growth."
+      }
+    ],
+    "mission": "Our mission is to cook your ideas into reliable, high-impact digital products through disciplined engineering, modern frameworks, and transparent technical execution."
   },
   "contact": {
     "formspreeId": "xjgdzbrg",
@@ -559,8 +634,8 @@
       {
         "icon": "Mail",
         "label": "Email",
-        "value": "contact@devsrecipe.com",
-        "href": "mailto:contact@devsrecipe.com"
+        "value": "devsrecipe@gmail.com",
+        "href": "mailto:devsrecipe@gmail.com"
       },
       {
         "icon": "Phone",
