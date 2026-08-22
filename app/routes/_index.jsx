@@ -271,13 +271,14 @@ function Navbar() {
 }
 
 // ── Typewriter Hook ───────────────────────────────────────────────────
-function useTypewriter(lines, typingSpeed = 60, pause = 2200) {
+function useTypewriter(lines, typingSpeed = 75, pause = 4200) {
   const [text, setText] = useState("");
   const lineIndex = useRef(0);
   const charIndex = useRef(0);
   const isDeleting = useRef(false);
 
   useEffect(() => {
+    let timeout;
     const tick = () => {
       const currentLine = lines[lineIndex.current];
 
@@ -287,7 +288,8 @@ function useTypewriter(lines, typingSpeed = 60, pause = 2200) {
 
         if (charIndex.current === currentLine.length) {
           isDeleting.current = true;
-          return setTimeout(tick, pause);
+          timeout = setTimeout(tick, pause);
+          return;
         }
       } else {
         charIndex.current--;
@@ -296,13 +298,15 @@ function useTypewriter(lines, typingSpeed = 60, pause = 2200) {
         if (charIndex.current === 0) {
           isDeleting.current = false;
           lineIndex.current = (lineIndex.current + 1) % lines.length;
+          timeout = setTimeout(tick, 600);
+          return;
         }
       }
 
-      setTimeout(tick, isDeleting.current ? 30 : typingSpeed);
+      timeout = setTimeout(tick, isDeleting.current ? 40 : typingSpeed);
     };
 
-    const timeout = setTimeout(tick, 500);
+    timeout = setTimeout(tick, 800);
     return () => clearTimeout(timeout);
   }, [lines, typingSpeed, pause]);
 

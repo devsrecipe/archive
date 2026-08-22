@@ -15,10 +15,10 @@ export default function ThreeGlobalBackground() {
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x050507, 0.0016);
 
-    const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 1200);
-    camera.position.set(0, 0, 140);
+    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1200);
+    camera.position.set(0, 0, 135);
 
-    // 2. High-Performance Renderer
+    // 2. Renderer
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
@@ -27,65 +27,223 @@ export default function ThreeGlobalBackground() {
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.25;
+    renderer.toneMappingExposure = 1.3;
     container.appendChild(renderer.domElement);
 
-    // 3. Central 3D Geometry Cluster (Multi-tier Wireframe Core)
-    const cluster = new THREE.Group();
-    scene.add(cluster);
+    // 3. Central Brand Sculpture: DEVSRECIPE CHEF HAT + CIRCUIT BOARD + TERMINAL
+    const logoGroup = new THREE.Group();
+    scene.add(logoGroup);
 
-    // Main Outer Torus Knot
-    const torusGeo = new THREE.TorusKnotGeometry(24, 6, 140, 24, 2, 3);
-    const torusMat = new THREE.MeshBasicMaterial({
+    // Initial scale and position
+    logoGroup.position.set(24, -2, 0);
+    logoGroup.scale.set(1.15, 1.15, 1.15);
+
+    // --- A. CHEF HAT OUTLINE (3D Curved Splines) ---
+    const hatPoints = [
+      new THREE.Vector3(-18, 0, 0),
+      new THREE.Vector3(-22, 4, 0),
+      new THREE.Vector3(-28, 12, 0),
+      new THREE.Vector3(-26, 24, 0),
+      new THREE.Vector3(-18, 30, 0),
+      new THREE.Vector3(-14, 38, 0),
+      new THREE.Vector3(0, 44, 0),
+      new THREE.Vector3(14, 38, 0),
+      new THREE.Vector3(18, 30, 0),
+      new THREE.Vector3(26, 24, 0),
+      new THREE.Vector3(28, 12, 0),
+      new THREE.Vector3(22, 4, 0),
+      new THREE.Vector3(18, 0, 0),
+    ];
+
+    const hatCurve = new THREE.CatmullRomCurve3(hatPoints, false);
+    const hatTubeGeo = new THREE.TubeGeometry(hatCurve, 120, 0.8, 12, false);
+    const hatTubeMat = new THREE.MeshBasicMaterial({
       color: 0xffffff,
-      wireframe: true,
+      wireframe: false,
       transparent: true,
-      opacity: 0.16,
+      opacity: 0.85,
     });
-    const torusMesh = new THREE.Mesh(torusGeo, torusMat);
-    cluster.add(torusMesh);
+    const hatMesh = new THREE.Mesh(hatTubeGeo, hatTubeMat);
+    logoGroup.add(hatMesh);
 
-    // Inner Icosahedron
-    const icoGeo = new THREE.IcosahedronGeometry(14, 2);
-    const icoMat = new THREE.MeshBasicMaterial({
-      color: 0xd4d4d8,
+    // Outer wireframe halo around the hat
+    const hatWireMat = new THREE.MeshBasicMaterial({
+      color: 0xa1a1aa,
       wireframe: true,
       transparent: true,
       opacity: 0.25,
     });
-    const icoMesh = new THREE.Mesh(icoGeo, icoMat);
-    cluster.add(icoMesh);
+    const hatWireMesh = new THREE.Mesh(new THREE.TubeGeometry(hatCurve, 60, 2.2, 8, false), hatWireMat);
+    logoGroup.add(hatWireMesh);
 
-    // Glowing Vertices
-    const icoPointsMat = new THREE.PointsMaterial({
+    // --- B. BOTTOM TERMINAL CLI BASE (Obsidian Box with > _ ) ---
+    const terminalGroup = new THREE.Group();
+    terminalGroup.position.set(0, -11, 0);
+    logoGroup.add(terminalGroup);
+
+    // Terminal Box (Rounded Box / Wireframe)
+    const boxGeo = new THREE.BoxGeometry(38, 18, 4);
+    const boxEdges = new THREE.EdgesGeometry(boxGeo);
+    const boxLineMat = new THREE.LineBasicMaterial({
       color: 0xffffff,
-      size: 2.0,
       transparent: true,
-      opacity: 0.9,
+      opacity: 0.7,
+      linewidth: 2,
     });
-    const icoPoints = new THREE.Points(icoGeo, icoPointsMat);
-    cluster.add(icoPoints);
+    const boxMesh = new THREE.LineSegments(boxEdges, boxLineMat);
+    terminalGroup.add(boxMesh);
 
-    // Secondary Floating Monoliths (Orbiting Geometric Elements)
-    const monolithCount = 4;
-    const monoliths = [];
-    for (let m = 0; m < monolithCount; m++) {
-      const geo = new THREE.OctahedronGeometry(6 + m * 2, 0);
-      const mat = new THREE.MeshBasicMaterial({
-        color: 0xffffff,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.12,
+    // Terminal Semi-Transparent Glass Body
+    const boxBodyMat = new THREE.MeshBasicMaterial({
+      color: 0x09090b,
+      transparent: true,
+      opacity: 0.85,
+    });
+    const boxBody = new THREE.Mesh(boxGeo, boxBodyMat);
+    boxBody.position.z = -0.5;
+    terminalGroup.add(boxBody);
+
+    // CLI Prompt: Chevron '>'
+    const chevronGeo = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(-12, 3, 2.2),
+      new THREE.Vector3(-8, 0, 2.2),
+      new THREE.Vector3(-12, -3, 2.2),
+    ]);
+    const promptMat = new THREE.LineBasicMaterial({
+      color: 0xffffff,
+      linewidth: 3,
+      transparent: true,
+      opacity: 0.95,
+    });
+    const chevronLine = new THREE.Line(chevronGeo, promptMat);
+    terminalGroup.add(chevronLine);
+
+    // CLI Prompt: Underscore '_' Cursor
+    const cursorGeo = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(-5, -3, 2.2),
+      new THREE.Vector3(0, -3, 2.2),
+    ]);
+    const cursorLine = new THREE.Line(cursorGeo, promptMat.clone());
+    terminalGroup.add(cursorLine);
+
+    // Secondary line inside terminal
+    const cmdLineGeo = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(3, -3, 2.2),
+      new THREE.Vector3(8, -3, 2.2),
+    ]);
+    const cmdLine = new THREE.Line(cmdLineGeo, new THREE.LineBasicMaterial({ color: 0x71717a, transparent: true, opacity: 0.5 }));
+    terminalGroup.add(cmdLine);
+
+    // --- C. CIRCUIT BOARD MOTHERBOARD TRACES & NODES ---
+    const circuitBranches = [
+      // 1. Central main trunk
+      [new THREE.Vector3(0, -2, 0), new THREE.Vector3(0, 14, 0), new THREE.Vector3(0, 32, 0)],
+      // 2. Left high branch
+      [new THREE.Vector3(0, 6, 0), new THREE.Vector3(-8, 16, 0), new THREE.Vector3(-12, 28, 0)],
+      // 3. Left wide branch
+      [new THREE.Vector3(0, 2, 0), new THREE.Vector3(-10, 10, 0), new THREE.Vector3(-20, 12, 0), new THREE.Vector3(-22, 20, 0)],
+      // 4. Left outer ear branch
+      [new THREE.Vector3(0, -1, 0), new THREE.Vector3(-14, 2, 0), new THREE.Vector3(-20, 4, 0)],
+      // 5. Left vertical feeder
+      [new THREE.Vector3(-8, 16, 0), new THREE.Vector3(-6, 24, 0), new THREE.Vector3(-6, 32, 0)],
+      // 6. Right high branch
+      [new THREE.Vector3(0, 6, 0), new THREE.Vector3(8, 16, 0), new THREE.Vector3(12, 28, 0)],
+      // 7. Right wide branch
+      [new THREE.Vector3(0, 2, 0), new THREE.Vector3(10, 10, 0), new THREE.Vector3(20, 12, 0), new THREE.Vector3(22, 20, 0)],
+      // 8. Right outer ear branch
+      [new THREE.Vector3(0, -1, 0), new THREE.Vector3(14, 2, 0), new THREE.Vector3(20, 4, 0)],
+      // 9. Right vertical feeder
+      [new THREE.Vector3(8, 16, 0), new THREE.Vector3(6, 24, 0), new THREE.Vector3(6, 32, 0)],
+    ];
+
+    const circuitCurves = [];
+    const circuitTubeMat = new THREE.MeshBasicMaterial({
+      color: 0x52525b,
+      transparent: true,
+      opacity: 0.7,
+    });
+
+    const nodePositions = [];
+
+    circuitBranches.forEach((branchPoints) => {
+      const curve = new THREE.CatmullRomCurve3(branchPoints, false, "catmullrom", 0.1);
+      circuitCurves.push(curve);
+
+      // Render circuit trace tube
+      const tubeGeo = new THREE.TubeGeometry(curve, 32, 0.45, 8, false);
+      const tubeMesh = new THREE.Mesh(tubeGeo, circuitTubeMat);
+      logoGroup.add(tubeMesh);
+
+      // Add endpoint node
+      const endPt = branchPoints[branchPoints.length - 1];
+      nodePositions.push(endPt);
+    });
+
+    // Circuit Nodes (Glowing Pads / Rings at ends of traces)
+    const nodeRingGeo = new THREE.RingGeometry(0.8, 1.8, 16);
+    const nodeRingMat = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.85,
+    });
+
+    const nodeCoreGeo = new THREE.CircleGeometry(0.7, 16);
+    const nodeCoreMat = new THREE.MeshBasicMaterial({
+      color: 0x18181b,
+      side: THREE.DoubleSide,
+    });
+
+    nodePositions.forEach((pos) => {
+      const ring = new THREE.Mesh(nodeRingGeo, nodeRingMat);
+      ring.position.copy(pos);
+      ring.position.z += 0.2;
+      logoGroup.add(ring);
+
+      const core = new THREE.Mesh(nodeCoreGeo, nodeCoreMat);
+      core.position.copy(pos);
+      core.position.z += 0.25;
+      logoGroup.add(core);
+    });
+
+    // --- D. LIGHTNING & ELECTRICAL DATA PULSES (Flowing through Circuit Pathways) ---
+    const pulseCount = 14;
+    const pulses = [];
+    const pulseCanvas = document.createElement("canvas");
+    pulseCanvas.width = 32;
+    pulseCanvas.height = 32;
+    const pCtx = pulseCanvas.getContext("2d");
+    const pGrad = pCtx.createRadialGradient(16, 16, 0, 16, 16, 16);
+    pGrad.addColorStop(0, "rgba(255, 255, 255, 1)");
+    pGrad.addColorStop(0.2, "rgba(255, 255, 255, 0.9)");
+    pGrad.addColorStop(0.5, "rgba(228, 228, 231, 0.4)");
+    pGrad.addColorStop(1, "rgba(255, 255, 255, 0)");
+    pCtx.fillStyle = pGrad;
+    pCtx.fillRect(0, 0, 32, 32);
+
+    const pulseTexture = new THREE.CanvasTexture(pulseCanvas);
+    const pulseMat = new THREE.SpriteMaterial({
+      map: pulseTexture,
+      transparent: true,
+      opacity: 0.95,
+      blending: THREE.AdditiveBlending,
+    });
+
+    for (let p = 0; p < pulseCount; p++) {
+      const sprite = new THREE.Sprite(pulseMat.clone());
+      sprite.scale.set(3.5, 3.5, 1);
+      logoGroup.add(sprite);
+
+      pulses.push({
+        sprite,
+        curveIndex: p % circuitCurves.length,
+        progress: (p / pulseCount),
+        speed: 0.25 + Math.random() * 0.2,
       });
-      const mesh = new THREE.Mesh(geo, mat);
-      const angle = (m / monolithCount) * Math.PI * 2;
-      mesh.position.set(Math.cos(angle) * 75, (m - 1.5) * 40, Math.sin(angle) * 60);
-      scene.add(mesh);
-      monoliths.push({ mesh, angle, speed: 0.15 + m * 0.05, radius: 70 + m * 15, yOffset: (m - 1.5) * 45 });
     }
 
-    // 4. Interactive 3D Particle Wave Field (Spanning Entire Depth)
-    const particleCount = 2400;
+    // --- E. BACKGROUND 3D PARTICLE WAVE CONSTELLATION ---
+    const particleCount = 2000;
     const particleGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const originalY = new Float32Array(particleCount);
@@ -93,13 +251,12 @@ export default function ThreeGlobalBackground() {
     const originalZ = new Float32Array(particleCount);
 
     const rangeX = 360;
-    const rangeZ = 450;
-    const depthSpan = 300;
+    const rangeZ = 420;
 
     for (let i = 0; i < particleCount; i++) {
       const x = (Math.random() - 0.5) * rangeX;
       const z = (Math.random() - 0.5) * rangeZ;
-      const y = (Math.sin(x * 0.03) + Math.cos(z * 0.03)) * 8 - ((z + 200) / 400) * depthSpan + 10;
+      const y = (Math.sin(x * 0.03) + Math.cos(z * 0.03)) * 8 - 20;
 
       positions[i * 3] = x;
       positions[i * 3 + 1] = y;
@@ -112,58 +269,44 @@ export default function ThreeGlobalBackground() {
 
     particleGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
-    // Particle Texture
-    const particleCanvas = document.createElement("canvas");
-    particleCanvas.width = 16;
-    particleCanvas.height = 16;
-    const ctx = particleCanvas.getContext("2d");
-    const gradient = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
-    gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
-    gradient.addColorStop(0.35, "rgba(255, 255, 255, 0.65)");
-    gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 16, 16);
-
-    const particleTexture = new THREE.CanvasTexture(particleCanvas);
-
-    const particleMat = new THREE.PointsMaterial({
+    const bgParticleMat = new THREE.PointsMaterial({
       color: 0xffffff,
-      size: 2.4,
-      map: particleTexture,
+      size: 1.8,
+      map: pulseTexture,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.45,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
 
-    const particles = new THREE.Points(particleGeo, particleMat);
+    const particles = new THREE.Points(particleGeo, bgParticleMat);
     scene.add(particles);
 
-    // 5. Floating Ambient Sparkles / Deep Dust Field
-    const dustCount = 450;
+    // Floating Specular Dust
+    const dustCount = 350;
     const dustGeo = new THREE.BufferGeometry();
     const dustPositions = new Float32Array(dustCount * 3);
 
     for (let i = 0; i < dustCount; i++) {
       dustPositions[i * 3] = (Math.random() - 0.5) * 320;
-      dustPositions[i * 3 + 1] = (Math.random() - 0.5) * 350;
-      dustPositions[i * 3 + 2] = (Math.random() - 0.5) * 280;
+      dustPositions[i * 3 + 1] = (Math.random() - 0.5) * 280;
+      dustPositions[i * 3 + 2] = (Math.random() - 0.5) * 260;
     }
 
     dustGeo.setAttribute("position", new THREE.BufferAttribute(dustPositions, 3));
     const dustMat = new THREE.PointsMaterial({
       color: 0xffffff,
-      size: 1.4,
-      map: particleTexture,
+      size: 1.2,
+      map: pulseTexture,
       transparent: true,
-      opacity: 0.4,
+      opacity: 0.3,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
     const dustParticles = new THREE.Points(dustGeo, dustMat);
     scene.add(dustParticles);
 
-    // 6. Smooth Mouse & Scroll Physics State
+    // --- F. MOUSE & SCROLL REACTION ---
     let mouseX = 0;
     let mouseY = 0;
     let targetMouseX = 0;
@@ -177,111 +320,112 @@ export default function ThreeGlobalBackground() {
     const handleMouseMove = (e) => {
       const halfX = window.innerWidth / 2;
       const halfY = window.innerHeight / 2;
-      targetMouseX = (e.clientX - halfX) / halfX; // Normalized -1 to +1
-      targetMouseY = (e.clientY - halfY) / halfY; // Normalized -1 to +1
+      targetMouseX = (e.clientX - halfX) / halfX; // -1 to +1
+      targetMouseY = (e.clientY - halfY) / halfY; // -1 to +1
     };
 
     const handleScroll = () => {
-      const maxScroll = Math.max(
-        document.documentElement.scrollHeight - window.innerHeight,
-        1
-      );
-      targetScroll = window.scrollY / maxScroll; // Normalized 0 to 1
+      const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      targetScroll = window.scrollY / maxScroll;
       const delta = window.scrollY - lastScrollY;
-      scrollVelocity = Math.abs(delta) * 0.05;
+      scrollVelocity = Math.abs(delta) * 0.04;
       lastScrollY = window.scrollY;
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("scroll", handleScroll, { passive: true });
-
-    // Initial sync
     handleScroll();
 
-    // 7. Animation Loop with Spring Lerp
+    // --- G. ANIMATION LOOP ---
     let animationFrameId;
     const clock = new THREE.Clock();
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
+      const delta = clock.getDelta();
 
-      // Smooth lerp for mouse & scroll
-      mouseX += (targetMouseX - mouseX) * 0.06;
-      mouseY += (targetMouseY - mouseY) * 0.06;
+      // Lerp mouse & scroll
+      mouseX += (targetMouseX - mouseX) * 0.05;
+      mouseY += (targetMouseY - mouseY) * 0.05;
       currentScroll += (targetScroll - currentScroll) * 0.05;
-      scrollVelocity *= 0.92; // Decay scroll velocity
+      scrollVelocity *= 0.92;
 
-      // Camera motion: descends & pivots as user scrolls through different sections
-      const targetCamY = -currentScroll * 120 + mouseY * -12;
-      const targetCamX = mouseX * 20 + Math.sin(currentScroll * Math.PI * 2) * 15;
-      const targetCamZ = 135 - Math.sin(currentScroll * Math.PI) * 35;
+      // Update Electrical Lightning Pulses flowing along the circuit traces
+      pulses.forEach((p) => {
+        p.progress += (p.speed + scrollVelocity * 0.5) * 0.012;
+        if (p.progress >= 1) {
+          p.progress = 0;
+          p.curveIndex = (p.curveIndex + 1) % circuitCurves.length;
+        }
 
-      camera.position.x += (targetCamX - camera.position.x) * 0.05;
-      camera.position.y += (targetCamY - camera.position.y) * 0.05;
-      camera.position.z += (targetCamZ - camera.position.z) * 0.05;
-      camera.lookAt(
-        mouseX * 10,
-        camera.position.y * 0.7,
-        -50
-      );
+        const curve = circuitCurves[p.curveIndex];
+        const pt = curve.getPointAt(p.progress);
+        p.sprite.position.copy(pt);
+        p.sprite.position.z += 1.2;
 
-      // Central Cluster rotation & positioning along scroll
-      cluster.rotation.x = elapsedTime * 0.15 + currentScroll * Math.PI * 1.5 + mouseY * 0.4;
-      cluster.rotation.y = elapsedTime * 0.2 + currentScroll * Math.PI * 2 + mouseX * 0.5;
-      cluster.rotation.z = Math.sin(elapsedTime * 0.12) * 0.15;
+        // Dynamic pulse brightness surge
+        const intensity = 0.7 + Math.sin(elapsedTime * 8 + p.progress * 10) * 0.3;
+        p.sprite.material.opacity = intensity;
+      });
 
-      cluster.position.x = mouseX * 15 + Math.sin(currentScroll * Math.PI * 2) * 20;
-      cluster.position.y = -currentScroll * 100 + 10 + mouseY * -8;
-
-      // Pulse the central wireframe scales subtly
-      const scale = 1 + Math.sin(elapsedTime * 0.8) * 0.04 + scrollVelocity * 0.08;
-      torusMesh.scale.set(scale, scale, scale);
-
-      // Orbiting Monoliths
-      for (let m = 0; m < monoliths.length; m++) {
-        const item = monoliths[m];
-        const curAngle = item.angle + elapsedTime * item.speed + currentScroll * Math.PI;
-        item.mesh.position.x = Math.cos(curAngle) * item.radius + mouseX * 10;
-        item.mesh.position.z = Math.sin(curAngle) * item.radius;
-        item.mesh.position.y = item.yOffset - currentScroll * 90 + Math.sin(elapsedTime + m) * 6;
-        item.mesh.rotation.x += 0.01;
-        item.mesh.rotation.y += 0.015;
+      // Terminal Cursor Blinking animation
+      if (cursorLine && cursorLine.material) {
+        cursorLine.material.opacity = Math.floor(elapsedTime * 2.2) % 2 === 0 ? 0.95 : 0.15;
       }
 
-      // Dynamic Particle Wave Undulation + Mouse Interaction + Scroll Surge
+      // 3D Brand Logo Rotation & Perspective Tilt
+      logoGroup.rotation.y = Math.sin(elapsedTime * 0.4) * 0.15 + mouseX * 0.35;
+      logoGroup.rotation.x = -mouseY * 0.25 + Math.cos(elapsedTime * 0.3) * 0.08;
+      logoGroup.rotation.z = Math.sin(elapsedTime * 0.2) * 0.04;
+
+      // Move brand logo along scroll depth and screen position
+      // In Hero: situated on right side (x: 24, y: 0)
+      // As user scrolls: glides smoothly through perspective
+      const targetLogoX = (width < 768 ? 0 : 28) + mouseX * 10 + Math.sin(currentScroll * Math.PI) * 15;
+      const targetLogoY = -currentScroll * 90 + mouseY * -8 + Math.sin(elapsedTime * 0.8) * 2;
+      const targetLogoZ = -currentScroll * 60;
+
+      logoGroup.position.x += (targetLogoX - logoGroup.position.x) * 0.05;
+      logoGroup.position.y += (targetLogoY - logoGroup.position.y) * 0.05;
+      logoGroup.position.z += (targetLogoZ - logoGroup.position.z) * 0.05;
+
+      // Camera motion & parallax
+      camera.position.x += (mouseX * 16 - camera.position.x) * 0.05;
+      camera.position.y += (-currentScroll * 60 - mouseY * 10 - camera.position.y) * 0.05;
+      camera.lookAt(0, camera.position.y * 0.4, 0);
+
+      // Particle wave undulation
       const posArr = particleGeo.attributes.position.array;
-      const waveFreq = 1.6 + scrollVelocity * 1.5;
+      const waveFreq = 1.4 + scrollVelocity * 1.5;
 
       for (let i = 0; i < particleCount; i++) {
         const x = originalX[i];
         const z = originalZ[i];
 
-        // Distance from mouse projection
         const dx = x - mouseX * 80;
         const dz = z - (mouseY * 60 - currentScroll * 100);
         const dist = Math.sqrt(dx * dx + dz * dz);
-        const mouseRipple = dist < 70 ? (1 - dist / 70) * 12 : 0;
+        const mouseRipple = dist < 65 ? (1 - dist / 65) * 10 : 0;
 
         posArr[i * 3 + 1] =
           originalY[i] +
-          Math.sin(elapsedTime * waveFreq + x * 0.035 + z * 0.025) * 5 +
-          Math.cos(elapsedTime * 1.2 + z * 0.04) * 4 +
+          Math.sin(elapsedTime * waveFreq + x * 0.03 + z * 0.02) * 4 +
+          Math.cos(elapsedTime * 1.1 + z * 0.035) * 3 +
           mouseRipple -
-          currentScroll * 60;
+          currentScroll * 50;
       }
       particleGeo.attributes.position.needsUpdate = true;
 
-      // Dust rotation
-      dustParticles.rotation.y = elapsedTime * 0.015 + currentScroll * 0.5;
-      dustParticles.rotation.x = elapsedTime * 0.01 + mouseY * 0.05;
+      // Ambient dust drift
+      dustParticles.rotation.y = elapsedTime * 0.015;
 
       renderer.render(scene, camera);
     };
 
     animate();
 
-    // 8. Responsive Resize Handling
+    // --- H. RESIZE & DISPOSAL ---
     const handleResize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
@@ -290,11 +434,18 @@ export default function ThreeGlobalBackground() {
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // Responsive scale for mobile vs desktop
+      if (width < 768) {
+        logoGroup.scale.set(0.75, 0.75, 0.75);
+      } else {
+        logoGroup.scale.set(1.15, 1.15, 1.15);
+      }
     };
 
     window.addEventListener("resize", handleResize);
+    handleResize();
 
-    // 9. Complete WebGL Lifecycle Cleanup
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
@@ -305,20 +456,20 @@ export default function ThreeGlobalBackground() {
         container.removeChild(renderer.domElement);
       }
 
-      torusGeo.dispose();
-      torusMat.dispose();
-      icoGeo.dispose();
-      icoMat.dispose();
-      icoPointsMat.dispose();
-
-      monoliths.forEach((m) => {
-        m.mesh.geometry.dispose();
-        m.mesh.material.dispose();
-      });
-
+      hatTubeGeo.dispose();
+      hatTubeMat.dispose();
+      boxGeo.dispose();
+      boxEdges.dispose();
+      boxLineMat.dispose();
+      boxBodyMat.dispose();
+      promptMat.dispose();
+      circuitTubeMat.dispose();
+      nodeRingGeo.dispose();
+      nodeRingMat.dispose();
+      nodeCoreGeo.dispose();
+      nodeCoreMat.dispose();
       particleGeo.dispose();
-      particleMat.dispose();
-      particleTexture.dispose();
+      bgParticleMat.dispose();
       dustGeo.dispose();
       dustMat.dispose();
       renderer.dispose();
