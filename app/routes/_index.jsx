@@ -314,31 +314,6 @@ function HeroSection() {
   const typed = useTypewriter(data.hero.typewriterLines);
   const heroRef = useRef(null);
 
-  // Floating badge animation variants
-  const floatBadge1 = {
-    initial: { y: 0 },
-    animate: {
-      y: [-8, 8, -8],
-      transition: {
-        duration: 5,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  const floatBadge2 = {
-    initial: { y: 0 },
-    animate: {
-      y: [8, -8, 8],
-      transition: {
-        duration: 6,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
   return (
     <section id="hero" className="hero section" ref={heroRef} style={{ position: "relative" }}>
       {/* Subtle Specular Glow Cones */}
@@ -352,45 +327,18 @@ function HeroSection() {
           animate="visible"
           variants={staggerContainer}
         >
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
-            <motion.div variants={fadeInUp} className="hero-badge">
-              <span className="dot" />
-              {data.hero.greeting}
-            </motion.div>
-
-            {/* Floating Luxury Architecture Badges (Framer Motion) */}
-            <motion.div
-              variants={floatBadge1}
-              initial="initial"
-              animate="animate"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "6px 16px",
-                background: "rgba(255, 255, 255, 0.03)",
-                border: "1px solid rgba(255, 255, 255, 0.12)",
-                borderTop: "1px solid rgba(255, 255, 255, 0.3)",
-                borderRadius: 9999,
-                fontSize: 12,
-                color: "#d4d4d8",
-                backdropFilter: "blur(12px)",
-                boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
-                marginBottom: 20,
-              }}
-            >
-              <Cpu size={14} style={{ color: "#ffffff" }} />
-              <span>Three.js Accelerated Core</span>
-            </motion.div>
-          </div>
+          <motion.div variants={fadeInUp} className="hero-badge">
+            <span className="dot" />
+            {data.hero.greeting}
+          </motion.div>
 
           <motion.h1 variants={fadeInUp} className="hero-title">
-            Engineering Digital Products <br />
-            <span className="gradient-text">Built to Scale</span>
+            Cook Your Idea <br />
+            <span className="gradient-text">with devsrecipe</span>
           </motion.h1>
 
           <motion.p variants={fadeInUp} className="hero-name">
-            Welcome to <span>{data.profile.name}</span> — {data.profile.role}
+            Custom web platforms, mobile apps & scalable cloud software built for founders and businesses.
           </motion.p>
 
           <motion.p variants={fadeInUp} className="hero-typewriter">
@@ -422,28 +370,6 @@ function HeroSection() {
               <Folder size={16} />
               <span>{data.hero.ctaSecondary}</span>
             </motion.a>
-
-            <motion.div
-              variants={floatBadge2}
-              initial="initial"
-              animate="animate"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "8px 16px",
-                background: "rgba(255, 255, 255, 0.025)",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
-                borderRadius: 12,
-                fontSize: 12,
-                color: "#a1a1aa",
-                backdropFilter: "blur(8px)",
-                marginLeft: "auto",
-              }}
-            >
-              <Activity size={14} style={{ color: "#ffffff" }} />
-              <span>99.9% Production SLA</span>
-            </motion.div>
           </motion.div>
 
           <motion.div variants={fadeInUp} className="hero-stats">
@@ -459,6 +385,81 @@ function HeroSection() {
               </motion.div>
             ))}
           </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ── How It Works (How We Cook Your Idea) ─────────────────────────────
+function HowItWorksSection() {
+  return (
+    <section id="recipe" className="section">
+      <div className="container">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+          className="section-header"
+        >
+          <span className="section-label">
+            <Sparkles size={14} /> The Devsrecipe Method
+          </span>
+          <h2 className="section-title">How We Cook Your Idea</h2>
+          <p className="section-subtitle">
+            Zero tech knowledge required. You bring the business vision, and we prepare all the ingredients — from UI design to production coding, payments, and cloud launch.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: 20,
+          }}
+        >
+          {data.recipeSteps?.map((step) => (
+            <TiltCard
+              key={step.step}
+              variants={scaleUpSkew}
+              className="service-card"
+              style={{ padding: "30px 24px" }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  marginBottom: 16,
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 20,
+                    fontWeight: 800,
+                    color: "#ffffff",
+                    background: "rgba(255, 255, 255, 0.05)",
+                    border: "1px solid rgba(255, 255, 255, 0.15)",
+                    padding: "4px 12px",
+                    borderRadius: 8,
+                  }}
+                >
+                  {step.step}
+                </span>
+                <span style={{ fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 700 }}>
+                  {step.subtitle}
+                </span>
+              </div>
+              <h3 className="service-title" style={{ fontSize: 18, marginBottom: 8 }}>{step.title}</h3>
+              <p className="service-desc" style={{ fontSize: 13, marginBottom: 0, lineHeight: 1.7 }}>{step.description}</p>
+            </TiltCard>
+          ))}
         </motion.div>
       </div>
     </section>
@@ -1371,6 +1372,8 @@ export default function Index() {
       <Navbar />
       <main>
         <HeroSection />
+        <div className="section-divider" />
+        <HowItWorksSection />
         <div className="section-divider" />
         <ServicesSection />
         <div className="section-divider" />

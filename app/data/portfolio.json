@@ -3,12 +3,12 @@
     "name": "devsrecipe",
     "firstName": "devs",
     "lastName": "recipe",
-    "role": "Digital Product Engineering Studio",
-    "tagline": "Engineering high-performance web platforms, mobile apps, and scalable cloud systems.",
+    "role": "Full-Stack Software Engineering Studio",
+    "tagline": "Cook your idea with devsrecipe into high-performance, scalable platforms.",
     "location": "Dhaka, Bangladesh",
     "email": "contact@devsrecipe.com",
     "phone": "+88019964644479",
-    "bio": "devsrecipe is a modern software engineering studio. We architect and build production-grade web platforms, cross-platform mobile apps, and scalable backend infrastructure engineered for reliability, security, and exceptional performance.",
+    "bio": "devsrecipe — cook your idea with devsrecipe. We transform complex concepts into production-grade web platforms, cross-platform mobile apps, and scalable backend infrastructure engineered for reliability, security, and exceptional performance.",
     "bio2": "Our engineering team emphasizes clean modular code, performance optimization, and refined user experience. From high-throughput APIs to real-time e-commerce ecosystems, we build digital solutions designed for continuous growth.",
     "links": {
       "github": "https://github.com/mansuramira",
@@ -18,18 +18,44 @@
     }
   },
   "hero": {
-    "greeting": "Digital Product Engineering Studio",
-    "headline": "Engineering Modern Digital Products",
-    "subheadline": "We design, build, and scale custom web platforms, mobile applications, and resilient cloud architectures built to drive business growth.",
+    "greeting": "Available for New Projects & Product Builds",
+    "headline": "Cook Your Idea with devsrecipe",
+    "subheadline": "You bring the vision — we prepare all the ingredients to build your complete website, mobile app, or software platform from scratch. Zero tech headaches, high-performance software, and seamless cloud launch.",
     "typewriterLines": [
-      "Full-Stack Web & Mobile Engineering",
-      "Scalable Cloud Architecture & APIs",
-      "High-Performance Enterprise Platforms",
-      "End-to-End Product Engineering"
+      "Got a startup idea? We build your complete web & mobile app",
+      "From a sketch to a live, money-making product for your customers",
+      "Fast, beautiful, and secure — built for continuous business growth",
+      "Zero tech stress: We handle design, coding, databases & cloud launch"
     ],
-    "ctaPrimary": "Start Your Project",
-    "ctaSecondary": "Explore Engineering Portfolio"
+    "ctaPrimary": "Cook Your Idea",
+    "ctaSecondary": "Explore Our Work"
   },
+  "recipeSteps": [
+    {
+      "step": "01",
+      "title": "The Recipe & Blueprint",
+      "subtitle": "Planning & Discovery",
+      "description": "You share your business goal or vision. We craft the complete technical blueprint, timeline, and feature roadmap."
+    },
+    {
+      "step": "02",
+      "title": "Crafting the Experience",
+      "subtitle": "UI/UX & Interactive Design",
+      "description": "We design intuitive, high-converting screens that make your product effortless and enjoyable for your users."
+    },
+    {
+      "step": "03",
+      "title": "Pure Code Engineering",
+      "subtitle": "Web, Mobile & Backend",
+      "description": "We build fast, secure code, configure resilient databases, and integrate secure online payment systems."
+    },
+    {
+      "step": "04",
+      "title": "Launch to the World",
+      "subtitle": "Cloud Deploy & 99.9% Uptime",
+      "description": "We publish your apps to the App Store, Google Play, and AWS cloud, keeping your product fast and reliable 24/7."
+    }
+  ],
   "stats": [
     {
       "value": "2+",
@@ -495,6 +521,10 @@
     {
       "id": "hero",
       "label": "Home"
+    },
+    {
+      "id": "recipe",
+      "label": "How It Works"
     },
     {
       "id": "services",
